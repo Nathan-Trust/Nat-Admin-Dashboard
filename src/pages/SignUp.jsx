@@ -47,7 +47,8 @@ const SignUp = () => {
     const displayName = e.target[0].value;
     const email = e.target[1].value;
     const password = e.target[2].value;
-    const file = e.target[3]?.files[0];
+    const file = e.target[4].files[0];
+    console.log(file)
 
     try {
       //Create user
@@ -214,13 +215,15 @@ const SignUp = () => {
               />
 
               <span className="ml-2 text-[18px] flex items-center">
-                <button
+               <button
                   type="button"
                   onClick={handleTogglePassword}
                   className="flex items-center mr-4"
+                  id="visible"
                 >
-                  {passwordVisible ? <EyeInvisibleFilled /> :  <EyeFilled />}
+                  {passwordVisible ?  <EyeInvisibleFilled /> : <EyeFilled /> }
                 </button>
+                 
               </span>
             </div>
             <input type="file" id="file" style={{ display: "none" }} />
