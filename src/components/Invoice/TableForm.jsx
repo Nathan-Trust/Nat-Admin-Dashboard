@@ -49,7 +49,7 @@ export default function TableForm({
 
   //Calculate total amount
 useEffect(() => {
-  let rows = document.querySelectorAll("#amount");
+  let rows = document.querySelectorAll(".amount");
   let sum = 0;
   for (let i = 0; i < rows.length; i++) {
     if (rows[i].className === "amount") {
@@ -155,13 +155,15 @@ useEffect(() => {
             </tr>
           </thead>
           {list.map(({ id, description, quantity, price, amount }) => (
-            <React.Fragment key={id} className="flex ">
+            <React.Fragment key={id} className="flex">
               <tbody>
                 <tr>
                   <td className="text-[10px] font-extrabold">{description}</td>
                   <td className="text-[10px] font-semibold">{quantity}</td>
                   <td className="text-[10px] font-semibold">${price}</td>
-                  <td className="text-[10px] font-semibold amount">{amount}USD</td>
+                  <td className="amount">{amount}</td>
+                  <td><button className="text-red-500" onClick={() => deleteRow(id)} ><AiOutlineDelete/></button></td>
+                  <td><button className="text-green-500" onClick={() => editRow(id)} ><AiOutlineEdit/></button></td>
                 </tr>
               </tbody>
             </React.Fragment>
