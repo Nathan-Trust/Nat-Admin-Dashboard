@@ -18,99 +18,120 @@ import { useEffect } from "react";
 import { auth } from "./utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { CssBaseline, ThemeProvider } from "@mui/material";
+import HomeChat from "./components/HomeChat";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 function App() {
-  
-  const [user , loading] = useAuthState(auth)
-  const { currentMode, setCurrentColor, setCurrentMode} = useStateContext();
+  const [user, loading] = useAuthState(auth);
+  const { currentMode, setCurrentColor, setCurrentMode , setActiveMenu} = useStateContext();
   useEffect(() => {
     const currentThemeColor = localStorage.getItem("colorMode");
     const currentThemeMode = localStorage.getItem("themeMode");
-    if (currentThemeColor && currentThemeMode) {
+    if (currentThemeColor && currentThemeMode ) {
       setCurrentColor(currentThemeColor);
       setCurrentMode(currentThemeMode);
+    }else{
+      setActiveMenu(true)
     }
-  }, [setCurrentColor , setCurrentMode]);
 
-  useEffect(()=> {
-    if(user){
-      <Navigate to='/dashboard'/>
+  }, [setCurrentColor, setCurrentMode ]);
+
+  useEffect(() => {
+    if (user) {
+      <Navigate to="/dashboard" />;
     }
-  },[])
+  }, []);
+
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  } ,[])
+
+
   return (
-      <CssBaseline>
-      <div className={currentMode === "Dark" ? "dark" : ""}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/signUp" element={<SignUp />} />
-          <Route path="/" element={<Login />} />
-          <Route
-            path="/home"
-            element={
-              <ProtectedRoute>
-                <Home />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/analytics"
-            element={
-              <ProtectedRoute>
-                <Analytics />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/invoice"
-            element={
-              <ProtectedRoute>
-                <Invoice />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/schedule"
-            element={
-              <ProtectedRoute>
-                <Schedule />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/calendar"
-            element={
-              <ProtectedRoute>
-                <Calendar />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/messages"
-            element={
-              <ProtectedRoute>
-                <Messages />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/notification"
-            element={
-              <ProtectedRoute>
-                <Notification />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <CssBaseline>
+      <div className={currentMode === "Dark" ? "dark" : ""} >
+        <BrowserRouter>
+          <Routes>
+            <Route path="/signUp" element={<SignUp />} />
+            <Route path="/" element={<Login />} />
+            <Route
+              path="/home"
+              element={
+                <ProtectedRoute>
+                  <Home />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/analytics"
+              element={
+                <ProtectedRoute>
+                  <Analytics />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/invoice"
+              element={
+                <ProtectedRoute>
+                  <Invoice />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/schedule"
+              element={
+                <ProtectedRoute>
+                  <Schedule />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/calendar"
+              element={
+                <ProtectedRoute>
+                  <Calendar />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/messages"
+              element={
+                <ProtectedRoute>
+                  <Messages />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/notification"
+              element={
+                <ProtectedRoute>
+                  <Notification />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/homeChat"
+              element={
+                <ProtectedRoute>
+                  <HomeChat />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
     </CssBaseline>
   );
 }

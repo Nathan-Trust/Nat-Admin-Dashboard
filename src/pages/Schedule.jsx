@@ -3,6 +3,12 @@ import { useStateContext } from "../contexts/ContextProvider";
 import SideBar from "../components/global/SideBar";
 import ThemeSettings from "../components/ThemeSettings";
 import { MdSettings } from "react-icons/md";
+import Board from "../components/Board";
+import Header from "../components/Header";
+/* import Task from "../components/Kanban/Task";
+import KanbanBoard from "../components/Kanban/KanbanBoard";
+import Kanban from "../components/Kanban";
+import ScheduleComponent from "../components/ScheduleComponent"; */
 
 const Schedule = () => {
   const { activeMenu, themeSettings, setThemeSettings, currentColor } =
@@ -21,13 +27,13 @@ const Schedule = () => {
           </button>
         </div>
 
-        <div>
+        <div className="dark:bg-nat" style={{ height: "100vh" }}>
           {activeMenu ? (
-            <div className="w-72 fixed sidebar dark:bg-test bg-white ">
+            <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white ">
               <SideBar />
             </div>
           ) : (
-            <div className=" w-15 ml-5 mt-7 h-680 dark:bg-test rounded-lg bg-white">
+            <div className=" w-15 ml-5 mt-7 h-680 rounded-lg dark:bg-secondary-dark-bg bg-white">
               <SideBar />
             </div>
           )}
@@ -36,13 +42,17 @@ const Schedule = () => {
         <div
           className={
             activeMenu
-              ? " min-h-screen md:ml-72 w-full "
-              : " w-full min-h-screen flex-2 "
+              ? " min-h-screen md:ml-72 w-full dark:bg-nat bg-slate-gray "
+              : " w-full min-h-screen flex-2 dark:bg-nat bg-slate-gray "
           }
+          style={{ height: "100vh", overflowY: "auto" }}
         >
           <div>
             {themeSettings && <ThemeSettings />}
-            <h1>Schedule</h1>
+            <div className="my-12">
+              <Header title="Schedule" />
+              <Board />
+            </div>
           </div>
         </div>
       </div>

@@ -1,22 +1,15 @@
 import React from "react";
 import { useStateContext } from "../contexts/ContextProvider";
 import SideBar from "../components/global/SideBar";
+import HomeChat from "../components/HomeChat";
+import {MdSettings} from "react-icons/md"
 import ThemeSettings from "../components/ThemeSettings";
-import { MdSettings } from "react-icons/md";
-import Login from "./Chat/Login";
-import Register from "./Chat/Register";
-import {ChatEngine} from "react-chat-engine"
-import ChatFeed from "../components/ChatFeed";
-import LoginForm from "../components/LoginForm";
-
 const Message = () => {
-  const { activeMenu, themeSettings, setThemeSettings, currentColor } =
-    useStateContext();
+  const { activeMenu , currentColor , themeSettings , setThemeSettings} = useStateContext();
 
-    if(!localStorage.getItem("username"))return <LoginForm/>
   return (
     <>
-      <div className="flex relative  bg-light-mode dark:bg-secondary-dark-bg ">
+      <div className="flex relative bg-light-mode dark:bg-secondary-dark-bg ">
         <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
           <button
             type="button"
@@ -30,11 +23,11 @@ const Message = () => {
 
         <div>
           {activeMenu ? (
-            <div className="w-72 fixed sidebar dark:bg-test bg-white ">
+            <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg  bg-white ">
               <SideBar />
             </div>
           ) : (
-            <div className=" w-15 ml-5 mt-7 h-680 dark:bg-test rounded-lg bg-white">
+            <div className=" w-15 ml-5 mt-7 h-680 dark:bg-secondary-dark-bg  rounded-lg bg-white">
               <SideBar />
             </div>
           )}
@@ -47,19 +40,8 @@ const Message = () => {
               : " w-full min-h-screen flex-2 "
           }
         >
-          <div>
-            {themeSettings && <ThemeSettings />}
-            <ChatEngine
-            height="100vh"
-            projectID="
-            27b3bb52-9570-423b-8ffd-e8f1f4de950d"
-            userName={localStorage.getItem('username')}
-      userSecret={localStorage.getItem('password')}
-            renderChatFeed={(chatAppProps) => <ChatFeed {...chatAppProps}/>}
-            onNewMessage={() => new Audio('https://chat-engine-assets.s3.amazonaws.com/click.mp3').play()}
-            />
-            <Register/>
-          </div>
+          {themeSettings && <ThemeSettings />}
+          <HomeChat />
         </div>
       </div>
     </>

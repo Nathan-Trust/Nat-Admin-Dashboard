@@ -4,14 +4,20 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ContextProvider } from "./contexts/ContextProvider";
+import {  AuthContextProvider } from "./contexts/AuthContext";
+import { ChatContextProvider } from "./contexts/ChatContext";
+
+import { Element } from "react-scroll";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <ContextProvider>
-      <App />
-    </ContextProvider>
-  </React.StrictMode>
+  <AuthContextProvider>
+    <ChatContextProvider>
+      <ContextProvider>
+          <App />
+      </ContextProvider>
+    </ChatContextProvider>
+  </AuthContextProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Reset = () => {
-  return (
-    <div>Reset</div>
-  )
-}
+  return <div>Reset</div>;
+};
 
-export default Reset
+export default Reset;

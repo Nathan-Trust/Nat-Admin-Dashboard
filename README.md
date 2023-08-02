@@ -68,3 +68,12 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### Cravens
+
+A REACT ADMIN DASHBOARD secured with google firebase designed with a touch of tailwind to check,monitor,set schedules and make work outside the workspace simpler and more comprehensive
+
+
+###
+
+
