@@ -19,8 +19,6 @@ import { auth } from "./utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import HomeChat from "./components/HomeChat";
-import AOS from "aos";
-import "aos/dist/aos.css";
 
 function App() {
   const [user, loading] = useAuthState(auth);
@@ -43,10 +41,7 @@ function App() {
     }
   }, []);
 
-  useEffect(() => {
-    AOS.init();
-    AOS.refresh();
-  } ,[])
+ 
 
 
   return (

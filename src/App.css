@@ -524,3 +524,51 @@
 .animate.animate-visible {
   opacity: 1;
 }
+
+
+/* styles.css or MyComponent.css */
+
+/* Example of AOS animation classes */
+[data-aos] {
+  transition-duration: 1s; /* Animation duration */
+}
+
+/* Additional AOS animation classes (optional) */
+[data-aos='fade-up'] {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+[data-aos='fade-up'].aos-animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-aos='zoom-in'] {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+[data-aos='zoom-in'].aos-animate {
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+
+/* styles.css or your component's styles */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px); /* You can use any other animation property */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out; /* Adjust the duration and timing function as needed */
+}
+

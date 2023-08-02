@@ -40,7 +40,7 @@ const Login = () => {
   };
 
   return (
-    <section className="relative flex flex-wrap lg:flex-nowrap h-screen w-full dark:bg-secondary-dark-bg   flex  items-center ">
+    <section className="relative flex flex-wrap lg:flex-nowrap h-screen w-full dark:bg-secondary-dark-bg  items-center ">
       <div className=" lg:w-96 px-[60px] py-12 sm:px-3 sm:py-16 bg-white dark:bg-secondary-dark-bg   lg:px-8 lg:py-24 w-full">
         <div className="mx-auto max-w-lg text-center">
           <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
@@ -123,7 +123,7 @@ const Login = () => {
                   onClick={handleTogglePassword}
                   className="flex items-center mr-2"
                 >
-                  {passwordVisible ? <EyeFilled /> : <EyeInvisibleFilled />}
+                  {passwordVisible ? <EyeInvisibleFilled /> :  <EyeFilled />}
                 </button>
               </span>
             </div>

@@ -12,7 +12,14 @@ import PieChart from "../components/PieChart";
 import { UserData } from "../data/UserTableData"; 
 import { GoPrimitiveDot } from "react-icons/go";
 import { IoIosMore } from "react-icons/io";
-import { animateScroll as scroll } from "react-scroll";
+// import { animateScroll as scroll } from "react-scroll";
+// import Aos from "aos";
+// import "aos/dist/aos.css";
+import { useInView } from "react-intersection-observer";
+
+
+
+
 // import { ScrollContainer, ScrollPage, Animator, ZoomIn , batch , FadeIn , Fade ,Zoom, MoveOut} from "react-scroll-motion";
 // import Dropdown from "../components/Dropdown";
 import { BsCurrencyDollar } from "react-icons/bs";
@@ -36,6 +43,20 @@ const Dashboard = () => {
       },
     ],
   });
+
+
+  const { ref, inView } = useInView({
+   // triggerOnce: true,  Only trigger animation once
+    threshold: 0.2, // The percentage of the element that needs to be in view to trigger the animation
+  });
+
+
+
+  /* useEffect(() => {
+    Aos.init();
+  }, []);
+
+ */
 
   
 
@@ -212,9 +233,11 @@ const Dashboard = () => {
                   </div>
                   <div >
                     <div
-                      className=" rounded-2xl md:w-400 p-4 m-3"
                     style={{ backgroundColor: currentColor }}
-                    
+                    ref={ref}
+      className={`${
+        inView ? "animate-fade-in  rounded-2xl md:w-400 p-4 m-3 " : "opacity-0  rounded-2xl md:w-400 p-4 m-3" // Apply the animation class when inView is true
+      }`}
                     >
                       <div className="flex justify-between items-center " >
                         <p className="font-semibold text-white text-2xl">
@@ -270,229 +293,3 @@ const Dashboard = () => {
 
 export default Dashboard;
 
-{
-  /* <div className="flex relative ">
-        <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
-          <button
-            type="button"
-            style={{ backgroundColor: currentColor, borderRadius: "50%" }}
-            className="text-2xl p-3 hover:drop-shadow-xl text-white"
-            onClick={() => setThemeSettings(true)}
-          >
-            <MdSettings />
-          </button>
-        </div>
-
-        <div>
-          {activeMenu ? (
-            <div className="w-72 fixed sidebar  dark:bg-secondary-dark-bg  bg-white ">
-              <SideBar />
-            </div>
-          ) : (
-            <div className=" w-15 ml-5 mt-7 h-680  dark:bg-secondary-dark-bg  rounded-lg bg-white">
-              <SideBar />
-            </div>
-          )}
-        </div>
-
-        <div
-          className={
-            activeMenu
-              ? " min-h-screen md:ml-72 w-full bg-light-mode dark:bg-nat  "
-              : " w-full min-h-screen flex-2 bg-light-mode dark:bg-nat"
-          }
-        >
-          <div>
-            {themeSettings && <ThemeSettings />}
-
-            <div className="mt-12 ">
-            <Header title="Dashboard"  />
-              <div className="flex flex-wrap lg:flex-nowrap justify-center ">
-                <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg h-44 rounded-xl w-full lg:w-80 p-8 pt-9 m-3 bg-hero-pattern2 bg-no-repeat bg-cover bg-center">
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <p className="font-bold text-gray-400">Earnings</p>
-                      <p className="text-2xl">$63,448.78</p>
-                    </div>
-                    {/* <button
-              type="button"
-              style={{ backgroundColor: currentColor }}
-              className="text-2xl opacity-0.9 text-white hover:drop-shadow-xl rounded-full  p-4"
-            >
-              <BsCurrencyDollar />
-            </button> 
-                  </div>
-                  <div className="mt-6">
-                   <Button
-                      color="white"
-                      bgColor={currentColor}
-                      text="Download"
-                      borderRadius="10px"
-                    /> 
-                  </div>
-                </div>
-                <div className="flex m-3 flex-wrap justify-center gap-1 items-center">
-                  {dashCard.map((card) => (
-                    <div
-                      key={card.title}
-                      className="bg-white h-44 dark:text-gray-200 dark:bg-secondary-dark-bg md:w-56  p-4 pt-9 rounded-2xl "
-                    >
-                      <button
-                        type="button"
-                        style={{
-                          color: card.iconColor,
-                          backgroundColor: card.iconBg,
-                        }}
-                        className="text-2xl opacity-0.9 rounded-full p-5 hover:drop-shadow-xl"
-                      >
-                        {card.icon}
-                      </button>
-                      <p className="mt-3">
-                        <span className="text-lg font-semibold">{card.amount}</span>
-                        <span className={`text-sm text-${card.pcColor} ml-2`}>
-                          {card.percentage}
-                        </span>
-                      </p>
-                      <p className="text-sm text-gray-400  mt-1">
-                        {card.title}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */
-}
-
-{
-  /* <>
-      <div className="flex relative bg-light-mode dark:bg-nat ">
-        <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
-          <button
-            type="button"
-            style={{ backgroundColor: currentColor, borderRadius: "50%" }}
-            className="text-2xl p-3 hover:drop-shadow-xl text-white"
-            onClick={() => setThemeSettings(true)}
-          >
-            <MdSettings />
-          </button>
-        </div>
-
-        <div>
-          {activeMenu ? (
-            <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg  bg-white ">
-              <SideBar />
-            </div>
-          ) : (
-            <div className=" w-15 ml-5 mt-7 h-680 dark:bg-secondary-dark-bg  rounded-lg bg-white">
-              <SideBar />
-            </div>
-          )}
-        </div>
-
-        <div
-          className={
-            activeMenu
-              ? " min-h-screen md:ml-72 w-full "
-              : " w-full min-h-screen flex-2 "
-          }
-        >
-          <div>
-          <div className="flex justify-between items-center">
-            <div>
-              <p className="font-bold text-gray-400">Earnings</p>
-              <p className="text-2xl">$63,448.78</p>
-            </div>
-            {/* <button
-              type="button"
-              style={{ backgroundColor: currentColor }}
-              className="text-2xl opacity-0.9 text-white hover:drop-shadow-xl rounded-full  p-4"
-            >
-              <BsCurrencyDollar />
-            </button> 
-          </div>
-          <div className="mt-6">
-            <Button
-              color="white"
-              bgColor={currentColor}
-              text="Download"
-              borderRadius="10px"
-            />
-          </div>
-        </div>
-        <div className="flex m-3 flex-wrap justify-center gap-1 items-center">
-          {earningData.map((item) => (
-            <div key={item.title} className="bg-white h-44 dark:text-gray-200 dark:bg-secondary-dark-bg md:w-56  p-4 pt-9 rounded-2xl ">
-              <button
-                type="button"
-                style={{ color: item.iconColor, backgroundColor: item.iconBg }}
-                className="text-2xl opacity-0.9 rounded-full  p-4 hover:drop-shadow-xl"
-              >
-                {item.icon}
-              </button>
-              <p className="mt-3">
-                <span className="text-lg font-semibold">{item.amount}</span>
-                <span className={`text-sm text-${item.pcColor} ml-2`}>
-                  {item.percentage}
-                </span>
-              </p>
-              <p className="text-sm text-gray-400  mt-1">{item.title}</p>
-            </div>
-          ))}
-        </div>
-      </div> 
-            {themeSettings && <ThemeSettings />}
-            <div className="m-7 ">
-              <Header title="Dashboard" dropdown={<Dropdown />} />
-              <div className="flex flex-wrap lg:flex-nowrap gap-3 items-center pl-1" style={{border:"1px solid black"}}>
-              <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg h-44 rounded-xl w-full lg:w-80 p-8 pt-9 m-3 bg-hero-pattern bg-no-repeat bg-cover bg-center">
-          <div className="flex justify-between items-center">
-            <div>
-              <p className="font-bold text-gray-400">Earnings</p>
-              <p className="text-2xl">$63,448.78</p>
-            </div>
-            <button
-              type="button"
-              style={{ backgroundColor: currentColor }}
-              className="text-2xl opacity-0.9 text-white hover:drop-shadow-xl rounded-full  p-4"
-            >
-              <BsCurrencyDollar />
-            </button>
-          </div>
-          <div className="mt-6">
-            <button
-              color="white"
-              bgColor={currentColor}
-              text="Download"
-              borderRadius="10px"
-            />
-          </div>
-        </div>
-                {dashCard.map((card) => (
-                  <div className=" flex items-center gap-3 bg-white h-32 dark:text-gray-200  dark:bg-secondary-dark-bg   px-16  rounded-2xl">
-                    <button
-                      type="button"
-                      style={{
-                        color: card.iconColor,
-                        backgroundColor: card.iconBg,
-                      }}
-                      className="text-2xl opacity-0.9 rounded-full p-4 hover:drop-shadow-xl"
-                    >
-                      {card.icon}
-                    </button>
-                    <div>
-                      <h3>{card.amount}</h3>
-                      <p>{card.title}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  ); */
-}
