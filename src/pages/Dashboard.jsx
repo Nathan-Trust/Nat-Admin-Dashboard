@@ -226,7 +226,7 @@ const Dashboard = () => {
                     </div>
                   </div>
                 </div>
-                <div style={{ width: "300px" }}>
+                <div className="w-[300px] md:w-full" >
                   <div
                     style={{ backgroundColor: currentColor }}
                     ref={ref}
@@ -288,7 +288,7 @@ const Dashboard = () => {
               </div>
 
               <div className="flex gap-10 m-4 flex-wrap justify-center">
-                <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg  px-2 py-4 md:p-6 rounded-2xl w-[300px] md:w-[450px] ">
+                <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg  px-2 py-4  md:p-6 rounded-2xl w-[300px] md:w-[450px] ">
                   <div className="flex justify-between items-center gap-2">
                     <p className="text-xl font-semibold">Recent Transactions</p>
                     {/* <DropDown currentMode={currentMode} /> */}

@@ -34,7 +34,7 @@ const Table = ({ data }) => {
       columns,
       data: rowData,
       defaultColumn,
-      initialState:{pageSize : 8}
+      initialState:{pageSize : 5}
     },
     useFilters,
     useGlobalFilter,

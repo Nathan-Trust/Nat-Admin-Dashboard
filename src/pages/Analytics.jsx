@@ -162,7 +162,7 @@ const Analytics = () => {
               <SideBar />
             </div>
           ) : (
-            <div className=" w-15 ml-5 mt-7 h-680 dark:bg-secondary-dark-bg  rounded-lg bg-white">
+            <div className=" w-0 mt-7 h-680 dark:bg-secondary-dark-bg  rounded-lg bg-white">
               <SideBar />
             </div>
           )}
