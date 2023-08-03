@@ -226,14 +226,14 @@ const Dashboard = () => {
                     </div>
                   </div>
                 </div>
-                <div className="w-[300px] md:w-full" >
+                <div className=" w-full flex flex-col justify-center items-center"  >
                   <div
                     style={{ backgroundColor: currentColor }}
                     ref={ref}
                     className={`${
                       inView
-                        ? "animate-fade-in  rounded-2xl md:w-400 p-4 m-3  "
-                        : "opacity-0  rounded-2xl  md:w-400 p-4 m-3 " // Apply the animation class when inView is true
+                        ? "animate-fade-in  rounded-2xl w-400 p-4 m-3  "
+                        : "opacity-0  rounded-2xl  w-400 p-4 m-3 " // Apply the animation class when inView is true
                     }`}
                   >
                     <div className="flex justify-between items-center">
@@ -265,8 +265,8 @@ const Dashboard = () => {
                   <div
                     className={`${
                       inView
-                        ? "animate-fade-in  bg-white dark:text-gray-200 dark:bg-secondary-dark-bg rounded-2xl md:w-400 p-8 m-3  flex justify-center items-center gap-10  "
-                        : "opacity-0   bg-white dark:text-gray-200 dark:bg-secondary-dark-bg rounded-2xl md:w-400 p-8 m-3  flex justify-center items-center gap-10 " // Apply the animation class when inView is true
+                        ? "animate-fade-in  bg-white dark:text-gray-200 dark:bg-secondary-dark-bg rounded-2xl w-400 p-8 m-3  flex justify-center items-center gap-10  "
+                        : "opacity-0   bg-white dark:text-gray-200 dark:bg-secondary-dark-bg rounded-2xl w-400 p-8 m-3  flex justify-center items-center gap-10 " // Apply the animation class when inView is true
                     }`}
                   >
                     <div>
