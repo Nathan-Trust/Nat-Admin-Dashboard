@@ -7,8 +7,8 @@ import { MdLogout, MdMenu, MdOutlineCancel } from "react-icons/md";
 import { auth } from "../../utils/firebase";
 // import { useAuthState } from "react-firebase-hooks/auth";
 const SideBar = () => {
-  const { activeMenu, setActiveMenu, currentColor , screenSize} = useStateContext();
-
+  const { activeMenu, setActiveMenu, currentColor, screenSize } =
+    useStateContext();
 
   const activeLink =
     "flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg  text-white  text-md m-2";
@@ -23,10 +23,10 @@ const SideBar = () => {
   };
 
   const handleCloseSideBar = () => {
-     if (activeMenu && screenSize <= 900) {
-       setActiveMenu(false);
-     }
-  }
+    if (activeMenu && screenSize <= 900) {
+      setActiveMenu(false);
+    }
+  };
 
   return (
     <div
