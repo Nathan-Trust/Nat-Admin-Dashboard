@@ -231,8 +231,7 @@ const Dashboard = () => {
                 >
                   <div
                     style={{
-                      backgroundColor: currentColor,
-                      border: "1px solid black",
+                      backgroundColor: currentColor
                     }}
                     ref={ref}
                     className={`${
