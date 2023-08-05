@@ -555,6 +555,18 @@
 }
 
 
+.invoiceBoard{
+  background: url(./data/animeInvoice\ \(4\).jpg);
+  background-size: cover;
+  background-repeat:no-repeat;
+  background-position: center;
+  /* background-repeat: no-repeat; */
+  /* background-position: calc(50% - 250px); */
+  /* background-position: center; */
+  /* background-color:#00000000 ; */
+  background-blend-mode: overlay;
+  /* animation: fadeSide 1s ease-out  1  ; */
+}
 
 /* styles.css or your component's styles */
 @keyframes fadeIn {
@@ -571,4 +583,28 @@
 .animate-fade-in {
   animation: fadeIn 1s ease-out; /* Adjust the duration and timing function as needed */
 }
+@keyframes fadeSide {
+  from {
+    opacity: 0;
+    transform: translateX(-20px); /* You can use any other animation property */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 
+
+
+.invoiceAnime{
+  background: url(./data/animeInvoice\ \(1\).jpg);
+  background-size: cover;
+  background-position: top;
+  /* background-repeat: no-repeat; */
+  /* background-position: calc(50% - 250px); */
+  /* background-position: center; */
+  /* background-color:#00000000 ; */
+  background-blend-mode: overlay;
+  /* animation: fadeSide 1s ease-out  1  ; */
+  animation: fadeSide 1s ease-out 0.09s 1  ;
+}

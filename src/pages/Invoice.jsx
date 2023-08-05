@@ -1,4 +1,4 @@
-import React, { useState , useRef } from "react";
+import React, { useState, useRef, useContext, useEffect } from "react";
 import { useStateContext } from "../contexts/ContextProvider";
 import SideBar from "../components/global/SideBar";
 import ThemeSettings from "../components/ThemeSettings";
@@ -14,11 +14,16 @@ import ClientDetails from "../components/Invoice/ClientDetails";
 import Dates from "../components/Invoice/Dates";
 import TableForm from "../components/Invoice/TableForm";
 import ReactToPrint from "react-to-print";
-import { FiPrinter } from 'react-icons/fi';
+import { FiPrinter } from "react-icons/fi";
+import { AuthContext } from "../contexts/AuthContext";
+import Navbar from "../components/Navbar";
+import animeInvoice1 from "../data/animeInvoice (1).jpg";
+import Typewriter from "typewriter-effect";
 
 const Invoice = () => {
   const { activeMenu, themeSettings, setThemeSettings, currentColor } =
     useStateContext();
+  const { currentUser } = useContext(AuthContext);
   const [showInvoice, setShowInvoice] = useState(true);
   const [name, setName] = useState("Nathan-Trust");
   const [address, setAddress] = useState("Uyo, Akwa Ibom State");
@@ -32,25 +37,31 @@ const Invoice = () => {
   const [invoiceNumber, setInvoiceNumber] = useState("456123789");
   const [invoiceDate, setInvoiceDate] = useState("2020/07/28");
   const [dueDate, setDueDate] = useState("2023/07/28");
-  const [note, setNote] = useState("All amounts are in dollars. Please make the payment within 15 days from the issue of date of this invoice. Tax is not charged on the basis of paragraph 1 of Article 94 of the Value Added Tax Act(I am not liable for VAT) ");
+  const [note, setNote] = useState(
+    "All amounts are in dollars. Please make the payment within 15 days from the issue of date of this invoice. Tax is not charged on the basis of paragraph 1 of Article 94 of the Value Added Tax Act(I am not liable for VAT)"
+  );
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState("");
   const [price, setPrice] = useState("");
   const [amount, setAmount] = useState("");
-  const [list , setList] = useState([])
-  const [total, setTotal] = useState(0)
-  const [itemDescription , setItemDescription] = useState(false)
+  const [list, setList] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [itemDescription, setItemDescription] = useState(false);
 
+  const componentRef = useRef();
 
-
-  const componentRef = useRef()
+  /* const { ref, inView } = useInView({
+    triggerOnce: true, // Only trigger animation once
+    threshold: 0.2, // The percentage of the element that needs to be in view to trigger the animation
+  }); */
 
   const handlePrint = () => {
     window.print();
   };
+
   return (
     <>
-      <div className="flex relative   bg-light-mode dark:bg-secondary-dark-bg ">
+      <div className="flex relative  bg-light-mode dark:bg-secondary-dark-bg ">
         <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
           <button
             type="button"
@@ -64,11 +75,11 @@ const Invoice = () => {
 
         <div className="dark:bg-nat" style={{ height: "100vh" }}>
           {activeMenu ? (
-            <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white">
+            <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white ">
               <SideBar />
             </div>
           ) : (
-            <div className="w-15 ml-5 mt-7 h-680 dark:bg-secondary-dark-bg rounded-lg bg-white">
+            <div className=" w-0 hidden  mt-7 h-680 dark:bg-secondary-dark-bg rounded-lg bg-white">
               <SideBar />
             </div>
           )}
@@ -77,14 +88,84 @@ const Invoice = () => {
         <div
           className={
             activeMenu
-              ? " min-h-screen md:ml-72 w-full dark:bg-nat bg-slate-gray  "
+              ? " min-h-screen md:ml-72 w-full dark:bg-nat bg-slate-gray "
               : " w-full min-h-screen flex-2 dark:bg-nat bg-slate-gray "
           }
-          style={{ height: "100vh", overflowY: "auto" }}
         >
           <div>
             {themeSettings && <ThemeSettings />}
-            {/* {itemDescription && (
+            <div className="">
+              <div>
+                <Navbar />
+              </div>
+
+              {/* Aniamted text and create invoice button */}
+              <div className="flex mt-[80px] lg:mt-0 lg:justify-between items-center">
+                <div className="ml-4 flex flex-col justify-center w-full items-center lg:block">
+                  <div
+                    className="text-xl lg:text-[35px] ml-3 text-white "
+                    style={{ alignSelf: "start" }}
+                  >
+                    <Typewriter
+                      options={{
+                        autoStart: true,
+                        loop: true,
+                        delay: 40,
+                        strings: [
+                          "Hi there !",
+                          "Let's create an invoice",
+                          "To generate an invoice",
+                          "Click on create invoice",
+                          "Fill in your details",
+                          "Fill in client's details",
+                          "Add items ,quantity and price ",
+                          "Checks and balances",
+                          "Invoice created",
+                          "Preview invoice",
+                          "Print invoice",
+                          "Hurray 🎉🎉🎊🎊",
+                        ],
+                      }}
+                    />
+                  </div>
+
+                  <div className="m-0 lg:m-3 mt-6 flex flex-col gap-3 lg:hidden w-[250px]">
+                    <div className="dark:bg-secondary-dark-bg bg-light-mode dark:text-white p-4 w-full rounded-md">
+                      Improve sales
+                    </div>
+                    <div className="dark:bg-secondary-dark-bg bg-light-mode dark:text-white p-4  w-full rounded-md">
+                      Remarkable achievements
+                    </div>
+                    <div className="dark:bg-secondary-dark-bg bg-light-mode dark:text-white p-4  w-full rounded-md">
+                      Accurate
+                    </div>
+                    <div className="dark:bg-secondary-dark-bg bg-light-mode dark:text-white p-4  w-full rounded-md">
+                      Precise
+                    </div>
+                  </div>
+
+                  <button
+                    className="p-2 rounded-md m-0 lg:m-3 mt-6 lg:mt-10 px-10 text-white"
+                    style={{ backgroundColor: currentColor }}
+                  >
+                    Create Invoice
+                  </button>
+                </div>
+
+                <div className="invoiceAnime hidden lg:block dark:bg-secondary-dark-bg dark:text-gray-200 h-[500px] rounded-xl w-full lg:w-80  p-8 pt-9 m-3 bg-no-repeat bg-cover bg-center" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Invoice;
+
+{
+  /* {itemDescription && (
               <article className="bg-test w-screen fixed top-0 flex justify-center items-center h-screen ">
                 <div className="dark:text-gray-200  bg-white dark:bg-[#484B52] w-600 px-10">
                   <TableForm
@@ -103,9 +184,10 @@ const Invoice = () => {
                   />
                 </div>
               </article>
-            )} */}
-            <div>
-              <div className=" h-screen w-full bg-light-mode dark:text-gray-200 dark:bg-nat px-4 py-4 ">
+            )} */
+}
+{
+  /* <div className=" h-screen w-full bg-light-mode dark:text-gray-200 dark:bg-nat px-4 py-4 ">
                 <main className=" flex  gap-9">
                   <div className="flex flex-col justify-center w-[500px] p-3 rounded-md  bg-white dark:bg-secondary-dark-bg">
                     <article className="md:grid grid-cols-2 gap-10 mb-3">
@@ -182,7 +264,7 @@ const Invoice = () => {
                           onChange={(e) => setWebsite(e.target.value)}
                           className="w-full bg-light-mode"
                         />
-                      </div> */}
+                      </div> 
 
                       <div className="">
                         <label
@@ -341,7 +423,7 @@ const Invoice = () => {
                       />
                     </div>
 
-                     <article className="">
+                    {/*  <article className="">
                         <TableForm
                           description={description}
                           setDescription={setDescription}
@@ -356,7 +438,7 @@ const Invoice = () => {
                           total={total}
                           setTotal={setTotal}
                         />
-                    </article>
+                    </article> 
 
                     <label htmlFor="note" className="font-semibold text-sm">
                       Additional Note
@@ -380,7 +462,7 @@ const Invoice = () => {
                     >
                       {" "}
                       Preview Invoice
-                    </button> */}
+                    </button> 
                   </div>
 
                   
@@ -452,16 +534,8 @@ const Invoice = () => {
                     >
                       {" "}
                       Edit Information
-                    </button> */}
+                    </button> 
                     </div>
                 </main>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-};
-
-export default Invoice;
+                          </div> */
+}
