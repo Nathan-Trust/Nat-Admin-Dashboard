@@ -156,7 +156,7 @@ const Invoice = () => {
                 </div>
                 {createInvoice ? (
                   <div
-                    className="createInvoice md:mr-16 md:static fixed top-0 right-0 h-screen w-screen md:w-full md:bg-none bg-[#AFB9CB] md:bg-transparent md:h-auto"
+                    className="createInvoice md:mr-16 md:static fixed top-0 right-0 h-screen w-screen md:w-full md:bg-none bg-[#1f1b3252] md:bg-transparent md:h-auto"
                     style={{ zIndex: 1000}}
                   >
                     <div className="w-full flex items-center justify-center h-screen md:h-[550px] popUp ">
