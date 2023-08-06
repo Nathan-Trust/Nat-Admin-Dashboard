@@ -19,6 +19,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import Navbar from "../components/Navbar";
 import animeInvoice1 from "../data/animeInvoice (1).jpg";
 import Typewriter from "typewriter-effect";
+import { MdOutlineCancel } from "react-icons/md";
 
 const Invoice = () => {
   const { activeMenu, themeSettings, setThemeSettings, currentColor } =
@@ -47,6 +48,7 @@ const Invoice = () => {
   const [list, setList] = useState([]);
   const [total, setTotal] = useState(0);
   const [itemDescription, setItemDescription] = useState(false);
+  const [createInvoice, setCreateInvoice] = useState(false);
 
   const componentRef = useRef();
 
@@ -100,10 +102,10 @@ const Invoice = () => {
               </div>
 
               {/* Aniamted text and create invoice button */}
-              <div className="flex mt-[80px] lg:mt-0 lg:justify-between items-center">
-                <div className="ml-4 flex flex-col justify-center w-full items-center lg:block">
+              <div className="flex mt-[80px] lg:mt-0 lg:justify-between items-center md:mt-0">
+                <div className="ml-4 flex flex-col md:mb-20 items-center md:items-start w-full  lg:block">
                   <div
-                    className="text-xl lg:text-[35px] ml-3 text-white "
+                    className="text-xl lg:text-[30px] ml-3 text-white "
                     style={{ alignSelf: "start" }}
                   >
                     <Typewriter
@@ -129,7 +131,7 @@ const Invoice = () => {
                     />
                   </div>
 
-                  <div className="m-0 lg:m-3 mt-6 flex flex-col gap-3 lg:hidden w-[250px]">
+                  <div className="m-0 lg:m-3 mt-6 flex flex-col gap-3 md:hidden w-[250px]">
                     <div className="dark:bg-secondary-dark-bg bg-light-mode dark:text-white p-4 w-full rounded-md">
                       Improve sales
                     </div>
@@ -147,13 +149,327 @@ const Invoice = () => {
                   <button
                     className="p-2 rounded-md m-0 lg:m-3 mt-6 lg:mt-10 px-10 text-white"
                     style={{ backgroundColor: currentColor }}
+                    onClick={() => setCreateInvoice(true)}
                   >
                     Create Invoice
                   </button>
                 </div>
+                {createInvoice ? (
+                  <div
+                    className="createInvoice md:mr-16 md:static fixed top-0 right-0 h-screen w-screen md:w-full md:bg-none bg-[#AFB9CB] md:bg-transparent md:h-auto"
+                    style={{ zIndex: 1000}}
+                  >
+                    <div className="w-full flex items-center justify-center h-screen md:h-[550px] popUp ">
+                      <div className="flex flex-col justify-center w-[300px] md:w-[350px] p-3 rounded-md  bg-white dark:bg-secondary-dark-bg">
+                        <div className="flex justify-end">
+                          <button type="button" className="text-red-500" onClick={() => setCreateInvoice(false)}><MdOutlineCancel/></button>
+                        </div>
+                        <article className="dark:text-white">
+                          <div className="flex flex-col ">
+                            <label
+                              htmlFor="name"
+                              className="font-semibold text-sm"
+                            >
+                              Enter your name
+                            </label>
+                            <input
+                              type="text"
+                              name="text"
+                              id="name"
+                              placeholder="Enter your name"
+                              autoComplete="off"
+                              value={name}
+                              onChange={(e) => setName(e.target.value)}
+                              className="w-full bg-light-mode dark:bg-nat text-sm p-2 rounded-md"
+                            />
+                          </div>
 
-                <div className="invoiceAnime hidden lg:block dark:bg-secondary-dark-bg dark:text-gray-200 h-[500px] rounded-xl w-full lg:w-80  p-8 pt-9 m-3 bg-no-repeat bg-cover bg-center" />
+                          <div className="flex flex-col mt-2">
+                            <label
+                              htmlFor="address"
+                              className="font-semibold text-sm"
+                            >
+                              Enter your address
+                            </label>
+                            <input
+                              type="text"
+                              name="address"
+                              id="address"
+                              placeholder="Enter your address"
+                              autoComplete="off"
+                              value={address}
+                              onChange={(e) => setAddress(e.target.value)}
+                              className="w-full bg-light-mode dark:bg-nat  text-sm p-2 rounded-md"
+                            />
+                          </div>
+                        </article>
+
+                        <article className="dark:text-white">
+                          <div className="flex flex-col mt-2">
+                            <label
+                              htmlFor="email"
+                              className="font-semibold text-sm"
+                            >
+                              Enter your email
+                            </label>
+                            <input
+                              type="email"
+                              name="email"
+                              id="email"
+                              placeholder="Enter your email"
+                              autoComplete="off"
+                              value={email}
+                              onChange={(e) => setEmail(e.target.value)}
+                              className="w-full bg-light-mode dark:bg-nat text-sm p-2 rounded-md"
+                            />
+                          </div>
+
+                          <div className="flex flex-col dark:text-white mt-2">
+                            <label
+                              htmlFor="website"
+                              className="font-semibold text-sm"
+                            >
+                              Enter your website
+                            </label>
+                            <input
+                              type="url"
+                              name="website"
+                              id="website"
+                              placeholder="Enter your website"
+                              autoComplete="off"
+                              value={website}
+                              onChange={(e) => setWebsite(e.target.value)}
+                              className="w-full bg-light-mode dark:bg-nat text-sm p-2 rounded-md"
+                            />
+                          </div>
+
+                          <div className="dark:text-white mt-2">
+                            <label
+                              htmlFor="phoneNumber"
+                              className="font-semibold text-sm"
+                            >
+                              Enter your phone number
+                            </label>
+                            <input
+                              type="number"
+                              name="phoneNumber"
+                              id="phoneNumber"
+                              placeholder="Enter your phone number"
+                              autoComplete="off"
+                              value={phoneNumber}
+                              onChange={(e) => setPhoneNumber(e.target.value)}
+                              className="w-full bg-light-mode dark:bg-nat text-sm p-2 rounded-md"
+                            />
+                          </div>
+                        </article>
+
+                        <article className="dark:text-white">
+                          <div className="flex flex-col mt-2">
+                            <label
+                              htmlFor="bankName"
+                              className="font-semibold text-sm"
+                            >
+                              Enter your bank name
+                            </label>
+                            <input
+                              type="text"
+                              name="bankName"
+                              id="bankName"
+                              placeholder="Enter your phone number"
+                              autoComplete="off"
+                              value={bankName}
+                              onChange={(e) => setBankName(e.target.value)}
+                              className="w-full bg-light-mode dark:bg-nat dark:text-white text-sm p-2 rounded-md"
+                            />
+                          </div>
+
+                          <div className="flex flex-col mt-2">
+                            <label
+                              htmlFor="bankAccount"
+                              className="font-semibold text-sm"
+                            >
+                              Enter your bank account no.
+                            </label>
+                            <input
+                              type="text"
+                              name="bankAccount"
+                              id="bankAccount"
+                              placeholder="Enter your bank account number"
+                              autoComplete="off"
+                              value={bankAccount}
+                              onChange={(e) => setBankAccount(e.target.value)}
+                              className="w-full bg-light-mode dark:bg-nat dark:text-white text-sm p-2 rounded-md"
+                            />
+                          </div>
+                        </article>
+
+                        <button
+                          type="button"
+                          className="p-1 text-[15px] dark:text-white rounded-md mt-4 nextBtn"
+                          style={{ backgroundColor: currentColor }}
+                        >
+                          Next step
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="invoiceAnime hidden md:block dark:bg-secondary-dark-bg dark:text-gray-200 h-[500px] rounded-xl w-full lg:w-80 mr-16 p-8 pt-9 m-3 bg-no-repeat bg-cover bg-center" />
+                )}
               </div>
+
+              {/* {createInvoice && (
+                <div
+                  className="createInvoice  darK:bg-test bg-light-mode  h-screen  w-screen fixed top-0  bg-test right-0"
+                  style={{ zIndex: 2000 }}
+                >
+                  <div
+                    className="w-full flex items-center justify-center h-screen "
+                    style={{ border: "1px solid black" }}
+                  >
+                    <div className="flex flex-col justify-center w-[300px] p-3 rounded-md  bg-white dark:bg-secondary-dark-bg">
+                      <article className="md:grid grid-cols-2 gap-10 mb-3">
+                        <div className="flex flex-col ">
+                          <label
+                            htmlFor="name"
+                            className="font-semibold text-sm"
+                          >
+                            Enter your name
+                          </label>
+                          <input
+                            type="text"
+                            name="text"
+                            id="name"
+                            placeholder="Enter your name"
+                            autoComplete="off"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            className="w-full bg-light-mode dark:bg-nat text-sm p-2 rounded-md"
+                          />
+                        </div>
+
+                        <div className="flex flex-col">
+                          <label
+                            htmlFor="address"
+                            className="font-semibold text-sm"
+                          >
+                            Enter your address
+                          </label>
+                          <input
+                            type="text"
+                            name="address"
+                            id="address"
+                            placeholder="Enter your address"
+                            autoComplete="off"
+                            value={address}
+                            onChange={(e) => setAddress(e.target.value)}
+                            className="w-full bg-light-mode dark:bg-nat  text-sm p-2 rounded-md"
+                          />
+                        </div>
+                      </article>
+
+                      <article className="md:grid grid-cols-2 gap-10 mb-3">
+                        <div className="flex flex-col">
+                          <label
+                            htmlFor="email"
+                            className="font-semibold text-sm"
+                          >
+                            Enter your email
+                          </label>
+                          <input
+                            type="email"
+                            name="email"
+                            id="email"
+                            placeholder="Enter your email"
+                            autoComplete="off"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="w-full bg-light-mode dark:bg-nat text-sm p-2 rounded-md"
+                          />
+                        </div>
+
+                        <div className="flex flex-col">
+                          <label
+                            htmlFor="website"
+                            className="font-semibold text-sm"
+                          >
+                            Enter your website
+                          </label>
+                          <input
+                            type="url"
+                            name="website"
+                            id="website"
+                            placeholder="Enter your website"
+                            autoComplete="off"
+                            value={website}
+                            onChange={(e) => setWebsite(e.target.value)}
+                            className="w-full bg-light-mode"
+                          />
+                        </div>
+
+                        <div className="">
+                          <label
+                            htmlFor="phoneNumber"
+                            className="font-semibold text-sm"
+                          >
+                            Enter your phone number
+                          </label>
+                          <input
+                            type="number"
+                            name="phoneNumber"
+                            id="phoneNumber"
+                            placeholder="Enter your phone number"
+                            autoComplete="off"
+                            value={phoneNumber}
+                            onChange={(e) => setPhoneNumber(e.target.value)}
+                            className="w-full bg-light-mode dark:bg-nat text-sm p-2 rounded-md"
+                          />
+                        </div>
+                      </article>
+
+                      <article className="md:grid grid-cols-2 gap-10 mb-3">
+                        <div className="flex flex-col">
+                          <label
+                            htmlFor="bankName"
+                            className="font-semibold text-sm"
+                          >
+                            Enter your bank name
+                          </label>
+                          <input
+                            type="text"
+                            name="bankName"
+                            id="bankName"
+                            placeholder="Enter your phone number"
+                            autoComplete="off"
+                            value={bankName}
+                            onChange={(e) => setBankName(e.target.value)}
+                            className="w-full bg-light-mode dark:bg-nat text-sm p-2 rounded-md"
+                          />
+                        </div>
+
+                        <div className="flex flex-col">
+                          <label
+                            htmlFor="bankAccount"
+                            className="font-semibold text-sm"
+                          >
+                            Enter your bank account no.
+                          </label>
+                          <input
+                            type="text"
+                            name="bankAccount"
+                            id="bankAccount"
+                            placeholder="Enter your bank account number"
+                            autoComplete="off"
+                            value={bankAccount}
+                            onChange={(e) => setBankAccount(e.target.value)}
+                            className="w-full bg-light-mode dark:bg-nat text-sm p-2 rounded-md"
+                          />
+                        </div>
+                      </article>
+                    </div>
+                  </div>
+                </div>
+              )} */}
             </div>
           </div>
         </div>
@@ -163,6 +479,15 @@ const Invoice = () => {
 };
 
 export default Invoice;
+
+
+
+
+
+
+
+
+
 
 {
   /* {itemDescription && (

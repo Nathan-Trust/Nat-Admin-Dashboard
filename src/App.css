@@ -608,3 +608,18 @@
   /* animation: fadeSide 1s ease-out  1  ; */
   animation: fadeSide 1s ease-out 0.09s 1  ;
 }
+
+@keyframes popUp {
+  0%{
+transform: translateY(-100%) scale(0);
+opacity: 0;
+  }100%{
+transform: translateY(0%) scale(1);
+opacity: 1;
+  }
+}
+
+
+.popUp{
+  animation: popUp .3s linear ;
+}

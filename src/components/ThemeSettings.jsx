@@ -13,7 +13,7 @@ const ThemeSettings = () => {
       className="bg-test w-screen fixed nav-item top-0 right-0"
       style={{ zIndex: 2000 }}
     >
-      <div className="float-right h-screen dark:text-gray-200  bg-white dark:bg-[#484B52] w-400">
+      <div className="float-right h-screen dark:text-gray-200  bg-white dark:bg-[#484B52] w-300">
         <div className="flex justify-between items-center p-4 ml-4">
           <p className="font-semibold text-lg">Settings</p>
           <button
