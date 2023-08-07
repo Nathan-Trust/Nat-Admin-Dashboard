@@ -71,8 +71,8 @@ useEffect(() => {
   const deleteRow = (id) => setList(list.filter((row) => row.id !== id));
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <div className="flex flex-col md:mt-1">
+      <form onSubmit={handleSubmit} className="dark:text-white">
+        <div className="flex flex-col md:mt-1 dark:text-white">
           <label htmlFor="description" className="font-semibold text-sm">
             Item Description
           </label>
@@ -87,9 +87,9 @@ useEffect(() => {
           />
         </div>
 
-        <div className="md:grid grid-cols-3 gap-10 md:mt-10">
+        <div className="md:grid grid-cols-3 gap-10 md:mt-6">
           <div className="flex flex-col">
-            <label htmlFor="quantity" className="font-semibold text-sm">
+            <label htmlFor="quantity" className="font-semibold text-sm ml-1">
               Quantity
             </label>
             <input
@@ -99,12 +99,12 @@ useEffect(() => {
               placeholder="Quantity"
               value={quantity}
               onChange={(e) => setQuantity(e.target.value)}
-              className="w-full bg-light-mode dark:bg-nat text-sm p-2 rounded-md"
+              className="w-full bg-light-mode dark:bg-nat text-sm p-2 rounded-md mt-1"
             />
           </div>
 
           <div className="flex flex-col">
-            <label htmlFor="price" className="font-semibold text-sm">
+            <label htmlFor="price" className="font-semibold text-sm ml-1">
               Price
             </label>
             <input
@@ -114,7 +114,7 @@ useEffect(() => {
               placeholder="Price"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
-              className="w-full bg-light-mode dark:bg-nat text-sm p-2 rounded-md"
+              className="w-full bg-light-mode dark:bg-nat text-sm p-2 rounded-md mt-1"
             />
           </div>
           <div className="flex flex-col">
@@ -126,7 +126,7 @@ useEffect(() => {
         </div>
         <button
           type="submit"
-          className="py-2 px-3 my-3 rounded-md shadow border-2 text-sm itemSubmit  text-white font-bold transition-all duration-300"
+          className="py-2 px-3 my-5 rounded-md shadow border-2 text-sm itemSubmit  text-white font-bold transition-all duration-300"
           style={{
             backgroundColor: currentColor,
             border: `1px solid ${currentColor}`,
@@ -136,50 +136,70 @@ useEffect(() => {
         </button>
       </form>
 
-      
-        <table style={{ width: "100%" }} className="my-2">
-          <thead className="">
-            <tr>
-              <td className="font-bold text-slate-500 text-[8px] uppercase">
-                Item description
-              </td>
-              <td className="font-bold text-slate-500  text-[10px] uppercase">
-                Quantity
-              </td>
-              <td className="font-bold text-slate-500 text-[10px] uppercase">
-                Price
-              </td>
-              <td className="font-bold text-slate-500 text-[10px] uppercase">
-                Amount
-              </td>
-            </tr>
-          </thead>
-          {list.map(({ id, description, quantity, price, amount }) => (
-            <React.Fragment key={id} className="flex">
-              <tbody>
-                <tr>
-                  <td className="text-[10px] font-extrabold">{description}</td>
-                  <td className="text-[10px] font-semibold">{quantity}</td>
-                  <td className="text-[10px] font-semibold">${price}</td>
-                  <td className="amount">{amount}</td>
-                  <td><button className="text-red-500" onClick={() => deleteRow(id)} ><AiOutlineDelete/></button></td>
-                  <td><button className="text-green-500" onClick={() => editRow(id)} ><AiOutlineEdit/></button></td>
-                </tr>
-              </tbody>
-            </React.Fragment>
-          ))}
-        </table>
-        <div className="flex ml-[180px] my-3 flex-col print-total">
-          <div
-            className="w-[250px] border-gray-950 "
-            style={{ border: "1px solid" }}
-          >
-            <div className="flex justify-between items-center ">
-              <h3 className="text-[10px] font-semibold">TOTAL</h3>
-              <h2 className="text-[10px] ">{total.toLocaleString()}USD</h2>
-            </div>
+      <table style={{ width: "100%" }} className="my-2">
+        <thead className="">
+          <tr>
+            <td className="font-bold text-slate-500 text-[8px] uppercase">
+              Item description
+            </td>
+            <td className="font-bold text-slate-500  text-[10px] uppercase">
+              Quantity
+            </td>
+            <td className="font-bold text-slate-500 text-[10px] uppercase">
+              Price
+            </td>
+            <td className="font-bold text-slate-500 text-[10px] uppercase">
+              Amount
+            </td>
+          </tr>
+        </thead>
+        {list.map(({ id, description, quantity, price, amount }) => (
+          <React.Fragment key={id} className="flex">
+            <tbody className="dark:text-white">
+              <tr>
+                <td className="text-[10px] font-extrabold">{description}</td>
+                <td className="text-[10px] font-semibold">{quantity}</td>
+                <td className="text-[10px] font-semibold">${price}</td>
+                <td className="amount" style={{ fontSize: "10px" }}>
+                  {amount}
+                </td>
+                <td>
+                  <button
+                    className="text-red-500  text-[15px]"
+                    onClick={() => deleteRow(id)}
+                  >
+                    <AiOutlineDelete />
+                  </button>
+                </td>
+                <td>
+                  <button
+                    className="text-green-500  text-[15px]"
+                    onClick={() => editRow(id)}
+                  >
+                    <AiOutlineEdit />
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </React.Fragment>
+        ))}
+      </table>
+      <div
+        className="flex  my-3  mx-6 print-total justify-end dark:text-white"
+        // style={{ border: "1px solid" }}
+      >
+        <div
+          className="w-[170px] border-gray-950 "
+          // style={{ border: "1px solid" }}
+        >
+          <div className="flex justify-between items-center ">
+            <h3 className="text-[10px] font-semibold">TOTAL</h3>
+            <h2 className="text-[15px] font-semibold ">
+              {total.toLocaleString()}USD
+            </h2>
           </div>
         </div>
+      </div>
     </>
   );
 }

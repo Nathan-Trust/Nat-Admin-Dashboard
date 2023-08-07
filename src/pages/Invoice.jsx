@@ -4,7 +4,7 @@ import SideBar from "../components/global/SideBar";
 import ThemeSettings from "../components/ThemeSettings";
 import { MdSettings } from "react-icons/md";
 // import Header from "../components/Header";
-import { CameraOutlined } from "@ant-design/icons";
+import { BackwardOutlined, CameraOutlined } from "@ant-design/icons";
 import Footer from "../components/Invoice/Footer";
 import Notes from "../components/Invoice/Notes";
 import Table from "../components/Invoice/Table";
@@ -49,6 +49,9 @@ const Invoice = () => {
   const [total, setTotal] = useState(0);
   const [itemDescription, setItemDescription] = useState(false);
   const [createInvoice, setCreateInvoice] = useState(false);
+  const [clientDetails, setClientDetails] = useState(false);
+  const [invoiceDetails, setInvoiceDetails] = useState(false);
+  const [tableDetails , setTableDetails] = useState(false)
 
   const componentRef = useRef();
 
@@ -59,6 +62,27 @@ const Invoice = () => {
 
   const handlePrint = () => {
     window.print();
+  };
+
+  const nextStep = () => {
+    setCreateInvoice(false);
+    setClientDetails(true);
+  };
+
+  const intermediaryStep = () => {
+    setClientDetails(false);
+    setInvoiceDetails(true);
+  };
+  const thirdStep = () => {
+    setInvoiceDetails(false);
+    setTableDetails(true)
+  };
+
+  const setCreateInvoiceFalse = () => {
+    setCreateInvoice(false);
+    setClientDetails(false);
+    setInvoiceDetails(false);
+    setTableDetails(false)
   };
 
   return (
@@ -105,7 +129,7 @@ const Invoice = () => {
               <div className="flex mt-[80px] lg:mt-0 lg:justify-between items-center md:mt-0">
                 <div className="ml-4 flex flex-col md:mb-20 items-center md:items-start w-full  lg:block">
                   <div
-                    className="text-xl lg:text-[30px] ml-3 text-white "
+                    className="text-xl lg:text-[30px] ml-3 dark:text-white "
                     style={{ alignSelf: "start" }}
                   >
                     <Typewriter
@@ -157,12 +181,18 @@ const Invoice = () => {
                 {createInvoice ? (
                   <div
                     className="createInvoice md:mr-16 md:static fixed top-0 right-0 h-screen w-screen md:w-full md:bg-none bg-[#1f1b3252] md:bg-transparent md:h-auto"
-                    style={{ zIndex: 1000}}
+                    style={{ zIndex: 1000 }}
                   >
                     <div className="w-full flex items-center justify-center h-screen md:h-[550px] popUp ">
                       <div className="flex flex-col justify-center w-[300px] md:w-[350px] p-3 rounded-md  bg-white dark:bg-secondary-dark-bg">
                         <div className="flex justify-end">
-                          <button type="button" className="text-red-500" onClick={() => setCreateInvoice(false)}><MdOutlineCancel/></button>
+                          <button
+                            type="button"
+                            className="text-red-500"
+                            onClick={setCreateInvoiceFalse}
+                          >
+                            <MdOutlineCancel />
+                          </button>
                         </div>
                         <article className="dark:text-white">
                           <div className="flex flex-col ">
@@ -305,10 +335,205 @@ const Invoice = () => {
 
                         <button
                           type="button"
-                          className="p-1 text-[15px] dark:text-white rounded-md mt-4 nextBtn"
+                          className="p-1 text-[15px] text-white rounded-md mt-4 nextBtn"
                           style={{ backgroundColor: currentColor }}
+                          onClick={nextStep}
                         >
                           Next step
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ) : clientDetails ? (
+                  <div
+                    className="createInvoice md:mr-16 md:static fixed top-0 right-0 h-screen w-screen md:w-full md:bg-none bg-[#1f1b3252] md:bg-transparent md:h-auto"
+                    style={{ zIndex: 1000 }}
+                  >
+                    <div className="w-full flex items-center justify-center h-screen md:h-[550px] popUp  " >
+                      <div className="flex flex-col justify-center w-[300px] md:w-[350px] p-3 rounded-md  bg-white dark:bg-secondary-dark-bg md:mb-10">
+                        <div className="flex justify-end">
+                          <button
+                            type="button"
+                            className="text-green-500"
+                            onClick={() => setCreateInvoice(true)}
+                          >
+                            <BackwardOutlined />
+                          </button>
+                        </div>
+                        <article className="dark:text-white">
+                          <div className="flex flex-col">
+                            <label
+                              htmlFor="clientName"
+                              className="font-semibold text-sm"
+                            >
+                              Enter your client's name
+                            </label>
+                            <input
+                              type="text"
+                              name="clientName"
+                              id="clientName"
+                              placeholder="Enter your client's name"
+                              autoComplete="off"
+                              value={clientName}
+                              onChange={(e) => setClientName(e.target.value)}
+                              className="w-full bg-light-mode dark:bg-nat text-sm p-2 rounded-md"
+                            />
+                          </div>
+
+                          <div className="flex flex-col mt-3">
+                            <label
+                              htmlFor="clientAddress"
+                              className="font-semibold text-sm"
+                            >
+                              Enter your client's address
+                            </label>
+                            <input
+                              type="text"
+                              name="clientAddress"
+                              id="clientAddress"
+                              placeholder="Enter your client's address"
+                              autoComplete="off"
+                              value={clientAddress}
+                              onChange={(e) => setClientAddress(e.target.value)}
+                              className="w-full bg-light-mode dark:bg-nat text-sm p-2 rounded-md"
+                            />
+                          </div>
+                        </article>
+
+                        <button
+                          type="button"
+                          className="p-1 text-[15px] text-white rounded-md mt-4 nextBtn"
+                          style={{ backgroundColor: currentColor }}
+                          onClick={intermediaryStep}
+                        >
+                          Next step
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ) : invoiceDetails ? (
+                  <div
+                    className="createInvoice md:mr-16 md:static fixed top-0 right-0 h-screen w-screen md:w-full md:bg-none bg-[#1f1b3252] md:bg-transparent md:h-auto"
+                    style={{ zIndex: 1000 }}
+                  >
+                    <div className="w-full flex items-center justify-center h-screen md:h-[550px] popUp ">
+                      <div className="flex flex-col justify-center w-[300px] md:w-[350px] p-3 rounded-md  bg-white dark:bg-secondary-dark-bg">
+                        <div className="flex justify-end">
+                          <button
+                            type="button"
+                            className="text-green-500"
+                            onClick={() => setClientDetails(true)}
+                          >
+                            <BackwardOutlined />
+                          </button>
+                        </div>
+                        <div className="mb-3 dark:text-white">
+                          <label
+                            htmlFor="invoiceNumber"
+                            className="font-semibold text-sm "
+                          >
+                            Enter your invoice number
+                          </label>
+                          <input
+                            type="text"
+                            name="invoiceNumber"
+                            id="invoiceNumber"
+                            placeholder="Enter your invoice number"
+                            autoComplete="off"
+                            value={invoiceNumber}
+                            onChange={(e) => setInvoiceNumber(e.target.value)}
+                            className="w-full bg-light-mode dark:bg-nat text-sm p-2 rounded-md"
+                          />
+                        </div>
+
+                        <div className="mb-3 dark:text-white">
+                          <label
+                            htmlFor="invoiceDate"
+                            className="font-semibold text-sm "
+                          >
+                            Enter your invoice date
+                          </label>
+                          <input
+                            type="date"
+                            name="invoiceDate"
+                            id="invoiceDate"
+                            placeholder="Enter your invoice date"
+                            autoComplete="off"
+                            value={invoiceDate}
+                            onChange={(e) => setInvoiceDate(e.target.value)}
+                            className="w-full bg-light-mode dark:bg-nat text-sm p-2 rounded-md"
+                          />
+                        </div>
+
+                        <div className="mb-3 dark:text-white">
+                          <label
+                            htmlFor="dueDate"
+                            className="font-semibold text-sm"
+                          >
+                            Due date
+                          </label>
+                          <input
+                            type="date"
+                            name="dueDate"
+                            id="dueDate"
+                            placeholder="Due date"
+                            autoComplete="off"
+                            value={dueDate}
+                            onChange={(e) => setDueDate(e.target.value)}
+                            className="w-full bg-light-mode dark:bg-nat text-sm p-2 rounded-md"
+                          />
+                        </div>
+                        <button
+                          type="button"
+                          className="p-1 text-[15px] text-white rounded-md mt-4 nextBtn"
+                          style={{ backgroundColor: currentColor }}
+                          onClick={thirdStep}
+                        >
+                          Next step
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ) : tableDetails ? (
+                  <div
+                    className="createInvoice md:mr-16 md:static fixed top-0 right-0 h-screen w-screen md:w-full md:bg-none bg-[#1f1b3252] md:bg-transparent md:h-auto"
+                    style={{ zIndex: 1000 }}
+                  >
+                    <div className="w-full flex items-center justify-center h-screen md:h-[550px] popUp ">
+                      <div className="flex flex-col justify-center w-[300px] md:w-[350px] p-3 rounded-md  bg-white dark:bg-secondary-dark-bg">
+                        <div className="flex justify-end">
+                          <button
+                            type="button"
+                            className="text-green-500"
+                            onClick={() => setInvoiceDetails(true)}
+                          >
+                            <BackwardOutlined />
+                          </button>
+                        </div>
+
+                        <article className="">
+                          <TableForm
+                            description={description}
+                            setDescription={setDescription}
+                            quantity={quantity}
+                            setQuantity={setQuantity}
+                            price={price}
+                            setPrice={setPrice}
+                            amount={amount}
+                            setAmount={setAmount}
+                            list={list}
+                            setList={setList}
+                            total={total}
+                            setTotal={setTotal}
+                          />
+                        </article>
+
+                        <button
+                          type="button"
+                          className="p-1 text-[15px] text-white rounded-md mt-4 nextBtn"
+                          style={{ backgroundColor: currentColor }}
+                        >
+                          Preview Invoice
                         </button>
                       </div>
                     </div>
@@ -317,159 +542,6 @@ const Invoice = () => {
                   <div className="invoiceAnime hidden md:block dark:bg-secondary-dark-bg dark:text-gray-200 h-[500px] rounded-xl w-full lg:w-80 mr-16 p-8 pt-9 m-3 bg-no-repeat bg-cover bg-center" />
                 )}
               </div>
-
-              {/* {createInvoice && (
-                <div
-                  className="createInvoice  darK:bg-test bg-light-mode  h-screen  w-screen fixed top-0  bg-test right-0"
-                  style={{ zIndex: 2000 }}
-                >
-                  <div
-                    className="w-full flex items-center justify-center h-screen "
-                    style={{ border: "1px solid black" }}
-                  >
-                    <div className="flex flex-col justify-center w-[300px] p-3 rounded-md  bg-white dark:bg-secondary-dark-bg">
-                      <article className="md:grid grid-cols-2 gap-10 mb-3">
-                        <div className="flex flex-col ">
-                          <label
-                            htmlFor="name"
-                            className="font-semibold text-sm"
-                          >
-                            Enter your name
-                          </label>
-                          <input
-                            type="text"
-                            name="text"
-                            id="name"
-                            placeholder="Enter your name"
-                            autoComplete="off"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            className="w-full bg-light-mode dark:bg-nat text-sm p-2 rounded-md"
-                          />
-                        </div>
-
-                        <div className="flex flex-col">
-                          <label
-                            htmlFor="address"
-                            className="font-semibold text-sm"
-                          >
-                            Enter your address
-                          </label>
-                          <input
-                            type="text"
-                            name="address"
-                            id="address"
-                            placeholder="Enter your address"
-                            autoComplete="off"
-                            value={address}
-                            onChange={(e) => setAddress(e.target.value)}
-                            className="w-full bg-light-mode dark:bg-nat  text-sm p-2 rounded-md"
-                          />
-                        </div>
-                      </article>
-
-                      <article className="md:grid grid-cols-2 gap-10 mb-3">
-                        <div className="flex flex-col">
-                          <label
-                            htmlFor="email"
-                            className="font-semibold text-sm"
-                          >
-                            Enter your email
-                          </label>
-                          <input
-                            type="email"
-                            name="email"
-                            id="email"
-                            placeholder="Enter your email"
-                            autoComplete="off"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            className="w-full bg-light-mode dark:bg-nat text-sm p-2 rounded-md"
-                          />
-                        </div>
-
-                        <div className="flex flex-col">
-                          <label
-                            htmlFor="website"
-                            className="font-semibold text-sm"
-                          >
-                            Enter your website
-                          </label>
-                          <input
-                            type="url"
-                            name="website"
-                            id="website"
-                            placeholder="Enter your website"
-                            autoComplete="off"
-                            value={website}
-                            onChange={(e) => setWebsite(e.target.value)}
-                            className="w-full bg-light-mode"
-                          />
-                        </div>
-
-                        <div className="">
-                          <label
-                            htmlFor="phoneNumber"
-                            className="font-semibold text-sm"
-                          >
-                            Enter your phone number
-                          </label>
-                          <input
-                            type="number"
-                            name="phoneNumber"
-                            id="phoneNumber"
-                            placeholder="Enter your phone number"
-                            autoComplete="off"
-                            value={phoneNumber}
-                            onChange={(e) => setPhoneNumber(e.target.value)}
-                            className="w-full bg-light-mode dark:bg-nat text-sm p-2 rounded-md"
-                          />
-                        </div>
-                      </article>
-
-                      <article className="md:grid grid-cols-2 gap-10 mb-3">
-                        <div className="flex flex-col">
-                          <label
-                            htmlFor="bankName"
-                            className="font-semibold text-sm"
-                          >
-                            Enter your bank name
-                          </label>
-                          <input
-                            type="text"
-                            name="bankName"
-                            id="bankName"
-                            placeholder="Enter your phone number"
-                            autoComplete="off"
-                            value={bankName}
-                            onChange={(e) => setBankName(e.target.value)}
-                            className="w-full bg-light-mode dark:bg-nat text-sm p-2 rounded-md"
-                          />
-                        </div>
-
-                        <div className="flex flex-col">
-                          <label
-                            htmlFor="bankAccount"
-                            className="font-semibold text-sm"
-                          >
-                            Enter your bank account no.
-                          </label>
-                          <input
-                            type="text"
-                            name="bankAccount"
-                            id="bankAccount"
-                            placeholder="Enter your bank account number"
-                            autoComplete="off"
-                            value={bankAccount}
-                            onChange={(e) => setBankAccount(e.target.value)}
-                            className="w-full bg-light-mode dark:bg-nat text-sm p-2 rounded-md"
-                          />
-                        </div>
-                      </article>
-                    </div>
-                  </div>
-                </div>
-              )} */}
             </div>
           </div>
         </div>
@@ -479,15 +551,6 @@ const Invoice = () => {
 };
 
 export default Invoice;
-
-
-
-
-
-
-
-
-
 
 {
   /* {itemDescription && (
