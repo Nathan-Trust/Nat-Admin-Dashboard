@@ -294,25 +294,7 @@ const Invoice = () => {
                         </article>
 
                         <article className="dark:text-white">
-                          <div className="flex flex-col mt-2">
-                            <label
-                              htmlFor="bankName"
-                              className="font-semibold text-sm"
-                            >
-                              Enter your bank name
-                            </label>
-                            <input
-                              type="text"
-                              name="bankName"
-                              id="bankName"
-                              placeholder="Enter your phone number"
-                              autoComplete="off"
-                              value={bankName}
-                              onChange={(e) => setBankName(e.target.value)}
-                              className="w-full bg-light-mode dark:bg-nat dark:text-white text-sm p-2 rounded-md"
-                            />
-                          </div>
-
+                          show profile "Io 8" key=clear
                           <div className="flex flex-col mt-2">
                             <label
                               htmlFor="bankAccount"
@@ -349,7 +331,7 @@ const Invoice = () => {
                     className="createInvoice md:mr-16 md:static fixed top-0 right-0 h-screen w-screen md:w-full md:bg-none bg-[#1f1b3252] md:bg-transparent md:h-auto"
                     style={{ zIndex: 1000 }}
                   >
-                    <div className="w-full flex items-center justify-center h-screen md:h-[550px] popUp  " >
+                    <div className="w-full flex items-center justify-center h-screen md:h-[550px] popUp  ">
                       <div className="flex flex-col justify-center w-[300px] md:w-[350px] p-3 rounded-md  bg-white dark:bg-secondary-dark-bg md:mb-10">
                         <div className="flex justify-end">
                           <button
