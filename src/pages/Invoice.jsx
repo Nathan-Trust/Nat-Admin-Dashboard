@@ -294,7 +294,6 @@ const Invoice = () => {
                         </article>
 
                         <article className="dark:text-white">
-                          show profile "Io 8" key=clear
                           <div className="flex flex-col mt-2">
                             <label
                               htmlFor="bankAccount"
