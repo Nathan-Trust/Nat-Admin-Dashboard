@@ -5,8 +5,10 @@ export default function Notes({note}) {
     <>
       <section className="">
         <h2>NOTES</h2>
-        <p className="text-[12px]">{note}</p>
-        <p className="text-[12px] my-3">Thank you for your confidence in my work</p>
+        <p className="text-[10px]  dark:text-white]">{note}</p>
+        <p className="text-[10px] my-2 dark:text-white">
+          Thank you for your confidence in my work
+        </p>
       </section>
     </>
   );

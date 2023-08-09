@@ -623,3 +623,9 @@ opacity: 1;
 .popUp{
   animation: popUp .3s linear ;
 }
+
+
+.overflowTable{
+  overflow-y:scroll;
+  height: 100px;
+}

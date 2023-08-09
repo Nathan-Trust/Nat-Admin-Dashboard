@@ -136,54 +136,56 @@ useEffect(() => {
         </button>
       </form>
 
-      <table style={{ width: "100%" }} className="my-2">
-        <thead className="">
-          <tr>
-            <td className="font-bold text-slate-500 text-[8px] uppercase">
-              Item description
-            </td>
-            <td className="font-bold text-slate-500  text-[10px] uppercase">
-              Quantity
-            </td>
-            <td className="font-bold text-slate-500 text-[10px] uppercase">
-              Price
-            </td>
-            <td className="font-bold text-slate-500 text-[10px] uppercase">
-              Amount
-            </td>
-          </tr>
-        </thead>
-        {list.map(({ id, description, quantity, price, amount }) => (
-          <React.Fragment key={id} className="flex">
-            <tbody className="dark:text-white">
-              <tr>
-                <td className="text-[10px] font-extrabold">{description}</td>
-                <td className="text-[10px] font-semibold">{quantity}</td>
-                <td className="text-[10px] font-semibold">${price}</td>
-                <td className="amount" style={{ fontSize: "10px" }}>
-                  {amount}
-                </td>
-                <td>
-                  <button
-                    className="text-red-500  text-[15px]"
-                    onClick={() => deleteRow(id)}
-                  >
-                    <AiOutlineDelete />
-                  </button>
-                </td>
-                <td>
-                  <button
-                    className="text-green-500  text-[15px]"
-                    onClick={() => editRow(id)}
-                  >
-                    <AiOutlineEdit />
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </React.Fragment>
-        ))}
-      </table>
+      <div className="overflowTable">
+        <table style={{ width: "100%" }} className="my-2 overflowTable">
+          <thead className="">
+            <tr>
+              <td className="font-bold text-slate-500 text-[8px] uppercase">
+                Item description
+              </td>
+              <td className="font-bold text-slate-500  text-[10px] uppercase">
+                Quantity
+              </td>
+              <td className="font-bold text-slate-500 text-[10px] uppercase">
+                Price
+              </td>
+              <td className="font-bold text-slate-500 text-[10px] uppercase">
+                Amount
+              </td>
+            </tr>
+          </thead>
+          {list.map(({ id, description, quantity, price, amount }) => (
+            <React.Fragment key={id} className="flex">
+              <tbody className="dark:text-white">
+                <tr>
+                  <td className="text-[10px] font-extrabold">{description}</td>
+                  <td className="text-[10px] font-semibold">{quantity}</td>
+                  <td className="text-[10px] font-semibold">${price}</td>
+                  <td className="amount" style={{ fontSize: "10px" }}>
+                    {amount}
+                  </td>
+                  <td>
+                    <button
+                      className="text-red-500  text-[15px]"
+                      onClick={() => deleteRow(id)}
+                    >
+                      <AiOutlineDelete />
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      className="text-green-500  text-[15px]"
+                      onClick={() => editRow(id)}
+                    >
+                      <AiOutlineEdit />
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </React.Fragment>
+          ))}
+        </table>
+      </div>
       <div
         className="flex  my-3  mx-6 print-total justify-end dark:text-white"
         // style={{ border: "1px solid" }}

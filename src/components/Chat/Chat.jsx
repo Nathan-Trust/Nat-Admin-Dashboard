@@ -10,7 +10,7 @@ import { ChatContext } from "../../contexts/ChatContext";
 const Chat = () => {
   const { data } = useContext(ChatContext)
   return (
-    <div className="chat bg-orange-700 rounded-2xl overflow-hidden w-3/5 dark:bg-secondary-dark-bg bg-white">
+    <div className="chat  rounded-2xl overflow-hidden w-3/5 dark:bg-secondary-dark-bg bg-white">
       <div className="flex items-center justify-between  p-3">
        <div className="flex items-center gap-2">
        <img src={data.user?.photoURL} alt=""  style={{

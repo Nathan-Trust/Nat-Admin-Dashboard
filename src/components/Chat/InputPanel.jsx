@@ -84,7 +84,7 @@ const InputPanel = () => {
     >
       <input
         type="text"
-        className=" w-full border-none outline-none text-md placeholder:text-slate-500 w-4/5 bg-transparent"
+        className="border-none outline-none text-md placeholder:text-slate-500 w-4/5 bg-transparent"
         placeholder="Type a message..."
         onChange={(e) => setText(e.target.value)}
         value={text}
