@@ -37,8 +37,8 @@ const Invoice = () => {
   const [clientName, setClientName] = useState("Wha kee");
   const [clientAddress, setClientAddress] = useState("Lagos , Nigeria");
   const [invoiceNumber, setInvoiceNumber] = useState("456123789");
-  const [invoiceDate, setInvoiceDate] = useState("2020/07/28");
-  const [dueDate, setDueDate] = useState("2023/07/28");
+  const [invoiceDate, setInvoiceDate] = useState("2023-09-08");
+  const [dueDate, setDueDate] = useState("2024-09-08");
   const [note, setNote] = useState(
     "All amounts are in dollars. Please make the payment within 15 days from the issue of date of this invoice. Tax is not charged on the basis of paragraph 1 of Article 94 of the Value Added Tax Act(I am not liable for VAT)"
   );

@@ -34,6 +34,7 @@ export const ContextProvider = ({ children }) => {
   const [side, setSide] = useState(true)
   const [screenSize, setScreenSize] = useState(undefined);
   const [isClicked, setIsClicked] = useState(initialState);
+  const [display , setDisplay] = useState(false)
 
   console.log(screenSize)
 
@@ -106,6 +107,8 @@ export const ContextProvider = ({ children }) => {
         screenSize,
         setScreenSize,
         handleClick, isClicked, initialState, setIsClicked,
+        display,
+        setDisplay,
       }}
     >
       {children}

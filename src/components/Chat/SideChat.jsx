@@ -6,11 +6,13 @@ import { db } from "../../utils/firebase";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { ChatContext } from "../../contexts/ChatContext";
+import { useStateContext } from "../../contexts/ContextProvider";
 
 const SideChat = () => {
   const [chats, setChats] = useState([])
   const {currentUser} = useContext(AuthContext)
-  const { dispatch} = useContext(ChatContext)
+  const { dispatch } = useContext(ChatContext)
+  const {display , setDisplay} = useStateContext()
 
   useEffect(() => {
     const getChats = () => {
@@ -29,6 +31,7 @@ const SideChat = () => {
   
   const handleSelect = (u) => {
     dispatch({ type: "CHANGE_USER", payload: u });
+    setDisplay(true)
   };
 
   return (

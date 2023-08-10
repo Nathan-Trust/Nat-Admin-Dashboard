@@ -68,15 +68,18 @@ const SearchBar = () => {
          [combinedId + ".date"]: serverTimestamp(),
        });
      }
-   } catch (err) {}
-
+   } catch (err) {
+     setError(true)
+   }
+setUser(null)
+setUsername("")
   }
   return (
     <div>
       <div className="ml-4">
         <input
           type="text"
-          className="dark:bg-nat bg-light-mode p-2 w-1/2 flex items-center justify-between rounded-md w-11/12 "
+          className="dark:bg-nat bg-light-mode p-2  flex items-center justify-between rounded-md w-11/12 "
           placeholder="Find a user"
           value={username}
           onKeyDown={handleKey}
