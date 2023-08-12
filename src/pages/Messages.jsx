@@ -52,7 +52,7 @@ const Message = () => {
           </button>
         </div>
 
-        <div className="dark:bg-nat" style={{ height: "100vh" }}>
+        <div className="dark:bg-nat" style={{ height: "100vh", zIndex:100 }}>
           {activeMenu ? (
             <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white ">
               <SideBar />

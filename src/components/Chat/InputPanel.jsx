@@ -74,13 +74,18 @@ const InputPanel = () => {
 
   setText("");
   setImg(null);
-};
+  };
+  
+  const handleKey =  (e) => {
+    e.code === "Enter" && handleSend();
+  }
 
   return (
     <div
       style={{ height: "50px" }}
       className="dark:bg-nat bg-light-mode p-2 flex items-center justify-between rounded-md w-11/12 
       "
+      onKeyDown={handleKey}
     >
       <input
         type="text"
@@ -90,27 +95,26 @@ const InputPanel = () => {
         value={text}
       />
       <div className="flex items-center gap-2">
-        
-       <div >
-       <input
-          type="file"
-          id="file"
-          onChange={(e) => setImg(e.target.files[0])}
-          style={{display:"none"}}
-        />
-        <label htmlFor="file" className="cursor-pointer">
-        <FaImage />
-        </label>
-       </div>
+        <div>
+          <input
+            type="file"
+            id="file"
+            onChange={(e) => setImg(e.target.files[0])}
+            style={{ display: "none" }}
+          />
+          <label htmlFor="file" className="cursor-pointer">
+            <FaImage />
+          </label>
+        </div>
 
         <div className="mb-2">
-        <button
-          type="button"
-          onClick={handleSend}
-          className="dark:text-white text-xl"
-        >
-         <SendOutlined/>
-        </button>
+          <button
+            type="button"
+            onClick={handleSend}
+            className="dark:text-white text-xl"
+          >
+            <SendOutlined />
+          </button>
         </div>
       </div>
     </div>

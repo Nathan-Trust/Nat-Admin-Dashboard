@@ -12,7 +12,7 @@ const SideChat = () => {
   const [chats, setChats] = useState([])
   const {currentUser} = useContext(AuthContext)
   const { dispatch } = useContext(ChatContext)
-  const {display , setDisplay} = useStateContext()
+  const {display , setDisplay, showScrollbar , setShowScrollbar} = useStateContext()
 
   useEffect(() => {
     const getChats = () => {
@@ -34,27 +34,59 @@ const SideChat = () => {
     setDisplay(true)
   };
 
+   const handleMouseEnter = (e) => {
+     if (e.target.scrollTop === 0) {
+       setShowScrollbar(false);
+     } 
+       setShowScrollbar(true);
+   };
+
+   const handleMouseLeave = () => {
+     setShowScrollbar(false);
+  };
+
+   const handleScroll = (e) => {
+     if (e.target.scrollTop === 0) {
+       setShowScrollbar(false);
+     }
+   };
+
   return (
-    <div className="mt-3">
-        
-        {Object.entries(chats)?.sort((a,b) => b[1].date - a[1].date).map((chat) => (
-        <div
-          className="flex items-center gap-3 cursor-pointer  dark:hover:bg-slate-600 p-2 hover:bg-slate-100  dark:text-white "
-          key={chat[0]}
-          onClick={() => handleSelect(chat[1].userInfo)}
-        >
-          <img src={chat[1].userInfo.photoURL} alt=""  style={{
-            width: "50px",
-            height: "50px",
-            borderRadius: "50%",
-            objectFit: "cover",
-          }} />
-          <div className="dark:text-white">
-            <span className="font-semibold">{chat[1].userInfo.displayName}</span>
-            <p>{chat[1].lastMessage?.text}</p>
-          </div>
-        </div>
-      ))}
+    <div
+      className={`container ${showScrollbar ? "show-scrollbar" : ""}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      id="style-14"
+      style={{height:"100%"}}
+    >
+      <div className="mt-3  " onScroll={handleScroll}>
+        {Object.entries(chats)
+          ?.sort((a, b) => b[1].date - a[1].date)
+          .map((chat) => (
+            <div
+              className="flex items-center gap-3 cursor-pointer  dark:hover:bg-slate-600 p-2 hover:bg-slate-100  dark:text-white "
+              key={chat[0]}
+              onClick={() => handleSelect(chat[1].userInfo)}
+            >
+              <img
+                src={chat[1].userInfo.photoURL}
+                alt=""
+                style={{
+                  width: "50px",
+                  height: "50px",
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                }}
+              />
+              <div className="dark:text-white">
+                <span className="font-semibold">
+                  {chat[1].userInfo.displayName}
+                </span>
+                <p>{chat[1].lastMessage?.text}</p>
+              </div>
+            </div>
+          ))}
+      </div>
     </div>
   );
 };

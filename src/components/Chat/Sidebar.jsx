@@ -6,14 +6,15 @@ import SideChat from "./SideChat";
 import { useStateContext } from "../../contexts/ContextProvider";
 
 const Sidebar = () => {
-  const {display} = useStateContext()
+  const {display , showScrollbar , setShowScrollbar} = useStateContext()
   return (
-    <div
+      <div
       className={
         display
-          ? "sidebar relative dark:bg-secondary-dark-bg bg-white rounded-2xl w-full lg:w-2/6 overflow-hidden hidden md:block"
-          : "sidebar relative dark:bg-secondary-dark-bg bg-white rounded-2xl w-full md:w-2/6 overflow-hidden block"
+          ? "sidebar relative dark:bg-secondary-dark-bg bg-white rounded-2xl w-full lg:w-2/6 overflow-hidden hidden lg:block"
+          : "sidebar relative dark:bg-secondary-dark-bg bg-white rounded-2xl w-full overflow-hidden block"
       }
+
     >
       <Navbar />
       <SearchBar />

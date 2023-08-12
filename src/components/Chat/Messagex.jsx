@@ -6,7 +6,8 @@ import { ChatContext } from "../../contexts/ChatContext";
 
 const Message = ({ message }) => {
   const {currentUser} = useContext(AuthContext)
-  const {data} = useContext(ChatContext)
+  const { data } = useContext(ChatContext)
+  const {setShowScrollbar} = useStateContext()
 
   const ref = useRef();
 
@@ -15,10 +16,20 @@ const Message = ({ message }) => {
   }, [message]);
   const sender = " bg-test dark:text-white dark:bg-blue-600 p-2 "
   const owner = "bg-blue-700 text-white dark:bg-nat p-2 "
+
+  const handleScroll = (e) => {
+    if (e.target.scrollTop === 0) {
+      setShowScrollbar(false);
+    }
+  };
   return (
     <div
-      className={`flex gap-1 mb-2  sender ${message.senderId === currentUser.uid && "owner"}
+      ref={ref}
+      className={`flex gap-1 mb-2  sender ${
+        message.senderId === currentUser.uid && "owner "
+      }
       `}
+      onScroll={handleScroll}
     >
       <div className="flex flex-col items-end ">
         <img
@@ -48,12 +59,13 @@ const Message = ({ message }) => {
         >
           {message.text}
         </p>
-         {message.img && 
+        {message.img && (
           <img
-          src={message.img}
-          alt="a guy"
-          style={{ width: "500px", height: "500px" }}
-        />}
+            src={message.img}
+            alt="a guy"
+            style={{ width: "250px", height: "280px" }}
+          />
+        )}
       </div>
     </div>
   );

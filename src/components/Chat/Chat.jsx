@@ -15,20 +15,20 @@ const Chat = () => {
     <div
       className={
         display
-          ? "block w-full md:w-2/6 lg:w-3/5 dark:bg-secondary-dark-bg bg-white rounded-2xl overflow-hidden"
-          : "chat hidden md:block rounded-2xl overflow-hidden w-3/5  dark:bg-secondary-dark-bg bg-white"
+          ? "block w-full  lg:w-3/5 dark:bg-secondary-dark-bg bg-white rounded-2xl overflow-hidden"
+          : " hidden  rounded-2xl overflow-hidden w-3/5  dark:bg-secondary-dark-bg bg-white"
       }
     >
       <div>
         <button
           type="button"
-          className="text-slate-500 block md:hidden"
+          className="text-slate-500 block lg:hidden ml-[10px] mt-[5px]"
           onClick={() => setDisplay(false)}
         >
           <BsArrowLeftCircle />
         </button>
       </div>
-
+ 
       <div className="flex items-center justify-between  p-3">
         <div className="flex items-center gap-2">
           <img
