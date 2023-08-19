@@ -40,7 +40,7 @@ const CreateTask = () => {
     <>
       {showCreateTask ? (
         <button className="button" onClick={() => setShowCreateTask(false)}>
-          <span className="dark:text-white text-xl flex items-center">
+          <span className="dark:text-white text-xl flex items-center ">
             Add Task
           </span>
         </button>

@@ -12,7 +12,6 @@ import KanbanBoard from "../components/KanbanBoard";
 const Schedule = () => {
   const { activeMenu, themeSettings, setThemeSettings, currentColor } =
     useStateContext();
-  
 
   return (
     <>
@@ -46,13 +45,15 @@ const Schedule = () => {
               ? " min-h-screen md:ml-72 w-full dark:bg-nat bg-slate-gray "
               : " w-full min-h-screen flex-2 dark:bg-nat bg-slate-gray "
           }
-          // style={{ height: "100vh", overflowY: "auto" }}
+          style={{ height: "100vh", overflowY: "auto" }}
         >
           <div>
             {themeSettings && <ThemeSettings />}
             <div className="">
-              <Navbar />
-              <Header title="Scheduler" />
+              <div>
+                <Navbar />
+                <Header title="Scheduler" />
+              </div>
               <KanbanBoard />
             </div>
           </div>

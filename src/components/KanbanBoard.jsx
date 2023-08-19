@@ -12,9 +12,11 @@ const KanbanBoard = () => {
   return (
       <DndProvider backend={HTML5Backend}>
         <Toaster />
-        <div className="h-screen flex flex-col items-center p-3 gap-16">
+        <div className="h-screen flex flex-col p-3 gap-16">
           <CreateTask />
-          <ListTask />
+          <div className="self-center">
+            <ListTask />
+          </div>
         </div>
       </DndProvider>
   );

@@ -64,56 +64,56 @@ const Navbar = () => {
     }
   }, [screenSize]);
   return (
-    <div className="text justify-between   flex p-2  relative">
-      <NavButton
-        title="Menu"
-        customFunc={() => setActiveMenu((prevActiveMenu) => !prevActiveMenu)}
-        color={currentColor}
-        icon={<AiOutlineMenu />}
-      />
-      <div className="flex">
+    <div className="text justify-between flex p-2 relative w-full">
         <NavButton
-          title="Cart"
-          customFunc={() => handleClick("cart")}
+          title="Menu"
+          customFunc={() => setActiveMenu((prevActiveMenu) => !prevActiveMenu)}
           color={currentColor}
-          icon={<FiShoppingCart />}
+          icon={<AiOutlineMenu />}
         />
-        <NavButton
-          title="Chat"
-          dotColor="#03c907"
-          customFunc={() => handleClick("chat")}
-          color={currentColor}
-          icon={<BsChatLeft />}
-        />
-        <NavButton
-          title="Notifications"
-          dotColor="#03c907"
-          customFunc={() => handleClick("notification")}
-          color={currentColor}
-          icon={<RiNotification3Line />}
-        />
+        <div className="flex">
+          <NavButton
+            title="Cart"
+            customFunc={() => handleClick("cart")}
+            color={currentColor}
+            icon={<FiShoppingCart />}
+          />
+          <NavButton
+            title="Chat"
+            dotColor="#03c907"
+            customFunc={() => handleClick("chat")}
+            color={currentColor}
+            icon={<BsChatLeft />}
+          />
+          <NavButton
+            title="Notifications"
+            dotColor="#03c907"
+            customFunc={() => handleClick("notification")}
+            color={currentColor}
+            icon={<RiNotification3Line />}
+          />
 
-        {/* <TooltipComponent content="Profile" position="BottomCenter"> */}
-        <div
-          className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg"
-          onClick={() => handleClick("userProfile")}
-        >
-          <img src={currentUser.photoURL} className="rounded-full w-8 h-8" />
-          <p>
-            <span className="text-gray-400 text-14">Hi,</span> {""}
-            <span className="text-gray-400 font-bold ml-1 text-14">
-              {currentUser.displayName}
-            </span>
-          </p>
-          <MdKeyboardArrowDown className="text-gray-400 text-14" />
+          {/* <TooltipComponent content="Profile" position="BottomCenter"> */}
+          <div
+            className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg"
+            onClick={() => handleClick("userProfile")}
+          >
+            <img src={currentUser.photoURL} className="rounded-full w-8 h-8" />
+            <p>
+              <span className="text-gray-400 text-14">Hi,</span> {""}
+              <span className="text-gray-400 font-bold ml-1 text-14">
+                {currentUser.displayName}
+              </span>
+            </p>
+            <MdKeyboardArrowDown className="text-gray-400 text-14" />
+          </div>
+          {/* </TooltipComponent> */}
+          {isClicked.cart && <Cart />}
+          {isClicked.chat && <Chat />}
+          {isClicked.notification && <Notification />}
+          {isClicked.userProfile && <UserProfile />}
         </div>
-        {/* </TooltipComponent> */}
-        {isClicked.cart && <Cart />}
-        {isClicked.chat && <Chat />}
-        {isClicked.notification && <Notification />}
-        {isClicked.userProfile && <UserProfile />}
       </div>
-    </div>
   );
 };
 
