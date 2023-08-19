@@ -22,7 +22,7 @@ import HomeChat from "./components/HomeChat";
 
 function App() {
   const [user, loading] = useAuthState(auth);
-  const { currentMode, setCurrentColor, setCurrentMode , setActiveMenu} = useStateContext();
+  const { currentMode, setCurrentColor, setCurrentMode , setActiveMenu , setTasks}  = useStateContext();
   useEffect(() => {
     const currentThemeColor = localStorage.getItem("colorMode");
     const currentThemeMode = localStorage.getItem("themeMode");
@@ -32,15 +32,19 @@ function App() {
     }else{
       setActiveMenu(true)
     }
-
   }, [setCurrentColor, setCurrentMode ]);
 
   useEffect(() => {
     if (user) {
       <Navigate to="/dashboard" />;
     }
-  }, []);
+  }, [user]);
 
+
+  useEffect(() => {
+  setTasks(JSON.parse(localStorage.getItem("tasks")))
+
+  },[])
  
 
 
