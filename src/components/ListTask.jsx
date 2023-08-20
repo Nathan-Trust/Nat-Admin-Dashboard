@@ -99,8 +99,19 @@ const ListTask = () => {
 
 
   // console.log(tasks.filter((task) => task.status === "todo"));
-
   useEffect(() => {
+    if (tasks) {
+      const fTodos = tasks.filter((task) => task.status === "todo");
+      const fInProgress = tasks.filter((task) => task.status === "inprogress");
+      const fClosed = tasks.filter((task) => task.status === "closed");
+
+      setTodos(fTodos);
+      setInProgress(fInProgress);
+      setClosed(fClosed);
+    }
+  }, [tasks]);
+
+ /*  useEffect(() => {
     const fTodos = tasks.filter((task) => task.status === "todo");
     const fInProgress = tasks.filter((task) => task.status === "inprogress");
     const fClosed = tasks.filter((task) => task.status === "closed");
@@ -108,7 +119,7 @@ const ListTask = () => {
     setTodos(fTodos);
     setInProgress(fInProgress);
     setClosed(fClosed);
-  }, [tasks]);
+  }, [tasks]); */
 
   const statuses = ["todo", "inprogress", "closed"];
   return (
