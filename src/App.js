@@ -41,10 +41,21 @@ function App() {
   }, [user]);
 
 
-  useEffect(() => {
+ /*  useEffect(() => {
   setTasks(JSON.parse(localStorage.getItem("tasks")))
 
-  },[])
+  },[]) */
+
+  useEffect(() => {
+    try {
+      const storedTasks = JSON.parse(localStorage.getItem("tasks"));
+      if (Array.isArray(storedTasks)) {
+        setTasks(storedTasks);
+      }
+    } catch (error) {
+      console.error("Error parsing tasks from local storage:", error);
+    }
+  }, []);
  
 
 
