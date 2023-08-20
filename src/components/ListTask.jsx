@@ -100,7 +100,7 @@ const ListTask = () => {
 
   // console.log(tasks.filter((task) => task.status === "todo"));
   useEffect(() => {
-    if (tasks) {
+    if (tasks !== null) {
       const fTodos = tasks.filter((task) => task.status === "todo");
       const fInProgress = tasks.filter((task) => task.status === "inprogress");
       const fClosed = tasks.filter((task) => task.status === "closed");
