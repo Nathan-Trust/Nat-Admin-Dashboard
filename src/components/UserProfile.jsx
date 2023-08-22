@@ -18,7 +18,7 @@ const UserProfile = () => {
   };
 
   return (
-    <div className="nav-item absolute right-1 top-16 bg-white dark:bg-secondary-dark-bg p-8 rounded-lg w-96">
+    <div className="nav-item absolute right-1 top-16 bg-white dark:bg-secondary-dark-bg p-8 rounded-lg w-96 zIndex">
       <div className="flex justify-between items-center">
         <p className="font-semibold text-lg dark:text-gray-200">User Profile</p>
         <Button
@@ -37,7 +37,6 @@ const UserProfile = () => {
         />
         <div>
           <p className="font-semibold text-xl dark:text-gray-200">
-            
             {currentUser.displayName}
           </p>
           <p className="text-gray-500 text-sm dark:text-gray-400">
@@ -84,13 +83,17 @@ const UserProfile = () => {
           onclick={setLogOut}
         /> */}
         <button
-      type="button"
-      onClick={setLogOut}
-      style={{ backgroundColor: currentColor, color:"white", borderRadius:"10px" }}
-      className="p-3 w-full hover:drop-shadow-xl"
-    >
-      Logout
-    </button>
+          type="button"
+          onClick={setLogOut}
+          style={{
+            backgroundColor: currentColor,
+            color: "white",
+            borderRadius: "10px",
+          }}
+          className="p-3 w-full hover:drop-shadow-xl"
+        >
+          Logout
+        </button>
       </div>
     </div>
   );

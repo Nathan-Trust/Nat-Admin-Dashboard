@@ -11,6 +11,7 @@ import {
 } from "firebase/auth";
 // import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../utils/firebase";
+import dayjs from "dayjs"
 
 const StateContext = createContext();
 
@@ -37,6 +38,7 @@ export const ContextProvider = ({ children }) => {
   const [display, setDisplay] = useState(false)
   const [showScrollbar, setShowScrollbar] = useState(false);
   const [tasks , setTasks] = useState([])
+  const [monthIndex , setMonthIndex] = useState(dayjs().month())
 
   console.log(screenSize)
 
@@ -111,7 +113,9 @@ export const ContextProvider = ({ children }) => {
         handleClick, isClicked, initialState, setIsClicked,
         display,
         setDisplay,showScrollbar, setShowScrollbar ,
-      tasks,setTasks
+        tasks, setTasks,
+        monthIndex,
+      setMonthIndex
       }}
     >
       {children}

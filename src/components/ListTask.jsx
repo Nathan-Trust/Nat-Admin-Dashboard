@@ -123,7 +123,7 @@ const ListTask = () => {
 
   const statuses = ["todo", "inprogress", "closed"];
   return (
-    <div className="flex gap-16">
+    <div className="flex flex-col lg:flex-row gap-16">
       {statuses.map((status, index) => (
         <Section
           key={index}

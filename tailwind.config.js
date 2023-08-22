@@ -7,14 +7,17 @@ module.exports = {
       body: ["Open Sans", "sans-serif"],
     },
     extend: {
+      gridTemplateColumns: {
+        "1/5": "1fr 5fr",
+      },
       backgroundColor: {
         "main-bg": "#FAFBFB",
-        "nat": "#1f1b32",
+        nat: "#1f1b32",
         "secondary-dark-bg": "#2a2442",
         "light-gray": "#F7F7F7",
-        "test": "rgba(0, 0, 0, 0.5)",
+        test: "rgba(0, 0, 0, 0.5)",
         "light-mode": "#f0eef6",
-        "white": "#ffffff",
+        white: "#fafafa",
       },
       width: {
         270: "270px",
@@ -43,5 +46,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/forms")],
 };

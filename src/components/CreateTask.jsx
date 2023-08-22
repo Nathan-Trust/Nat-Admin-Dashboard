@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import toast from "react-hot-toast"
+import toast from "react-hot-toast";
 import { useStateContext } from "../contexts/ContextProvider";
 
 const CreateTask = () => {
-  const [showCreateTask , setShowCreateTask] = useState(true)
+  const [showCreateTask, setShowCreateTask] = useState(true);
 
-  const {tasks , setTasks} = useStateContext()
+  const { tasks, setTasks, currentColor } = useStateContext();
   const [task, setTask] = useState({
     id: "",
     name: "",
@@ -16,8 +16,10 @@ const CreateTask = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (task.name.length < 3) return toast.error("Task must have more than 3 characters");
-    if (task.name.length > 100) return toast.error("Task must not be more than a 100 characters");
+    if (task.name.length < 3)
+      return toast.error("Task must have more than 3 characters");
+    if (task.name.length > 100)
+      return toast.error("Task must not be more than a 100 characters");
 
     setTasks((prev) => {
       const list = [...prev, task];
@@ -25,7 +27,7 @@ const CreateTask = () => {
       return list;
     });
 
-    toast.success("Task created")
+    toast.success("Task created");
 
     setTask({
       id: "",
@@ -45,7 +47,7 @@ const CreateTask = () => {
           </span>
         </button>
       ) : (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="self-center">
           <input
             type="text"
             className="border-2 border-slate-400 bg-slate-100 rounded-md mr-4 h-12 w-64 px-1  text-red"
@@ -55,8 +57,9 @@ const CreateTask = () => {
             }
           />
           <button
-            type="submit"
-              className="bg-cyan-500 rounded-md px-4 h-12 text-white"
+              type="submit"
+              style={{backgroundColor: currentColor}}
+            className="rounded-md px-4 h-12 text-white"
           >
             Create{" "}
           </button>

@@ -2,7 +2,7 @@ import React from "react";
 import { useStateContext } from "../contexts/ContextProvider";
 import SideBar from "../components/global/SideBar";
 import Header from "../components/Header";
-import { CalendarView } from "../components/CalendarView";
+import CalendarComponent from "../components/CalendarComponent";
 import ThemeSettings from "../components/ThemeSettings";
 import { MdSettings } from "react-icons/md";
 
@@ -46,10 +46,8 @@ const Calendar = () => {
           <div>
             {themeSettings && <ThemeSettings />}
             <div className=" mt-[50px] lg:px-[80px]" >
-              <Header title="Calendar"  />
-              <div style={{ height: "70vh" }} className="px-5">
-                <CalendarView />
-              </div>
+              <Header title="Calendar" />
+                <CalendarComponent/>
             </div>
           </div>
         </div>
