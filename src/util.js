@@ -9,8 +9,7 @@ export function getMonth(month = dayjs().month()) {
 
   /* currentMonthCount: This variable is being initialized with the calculated offset.
    It will be used to keep track of the day count as you populate the calendar matrix. It's essentially starting at a negative value that corresponds to how many days from the previous month need to be shown before the actual first day of the month. */
-  
-  
+
   const daysMatrix = new Array(5).fill([]).map(() => {
     return new Array(7).fill(null).map(() => {
       currentMonthCount++;
