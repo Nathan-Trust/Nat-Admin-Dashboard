@@ -13,7 +13,9 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import ProtectedRoute from "./ProtectedRoute";
 import Home from "./components/Home";
+import AreYouSure from "./components/AreYouSure"
 import NotFound from "./pages/NotFound";
+import ProfilePicAdd from "./pages/ProfilePicAdd";
 import { useEffect } from "react";
 import { auth } from "./utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -61,11 +63,27 @@ function App() {
 
   return (
     <CssBaseline>
-      <div className={currentMode === "Dark" ? "dark" : ""} >
+      <div className={currentMode === "Dark" ? "dark" : ""}>
         <BrowserRouter>
           <Routes>
             <Route path="/signUp" element={<SignUp />} />
             <Route path="/" element={<Login />} />
+            <Route
+              path="/addProfilePic"
+              element={
+                <ProtectedRoute>
+                  <ProfilePicAdd />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/are-you-sure"
+              element={
+                <ProtectedRoute>
+                  <AreYouSure />
+                </ProtectedRoute>
+              }
+            />
             <Route
               path="/home"
               element={
@@ -142,7 +160,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </div>
-    </CssBaseline>
+    </CssBaseline> 
   );
 }
 

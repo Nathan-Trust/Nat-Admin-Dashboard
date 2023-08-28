@@ -39,7 +39,7 @@ const SignUp = () => {
     }
   };
 
-  const { themeSettings, setThemeSettings, currentColor } = useStateContext();
+  const { themeSettings, setThemeSettings, currentColor , setDisplayName , setStorageRef} = useStateContext();
 
   const handleSubmit = async (e) => {
     setLoading(true);
@@ -47,18 +47,21 @@ const SignUp = () => {
     const displayName = e.target[0].value;
     const email = e.target[1].value;
     const password = e.target[2].value;
-    const file = e.target[4].files[0];
-    console.log(file)
+    // const file = e.target[4].files[0];
 
     try {
       //Create user
       const res = await createUserWithEmailAndPassword(auth, email, password);
-
+      
       //Create a unique image name
       const date = new Date().getTime();
-      const storageRef = ref(storage, `${displayName + date}`);
+    const storageRef = ref(storage, `${displayName + date}`);
+    setDisplayName(displayName)
+    setStorageRef(storageRef)
+      navigate("/addProfilePic")
+      
 
-      await uploadBytesResumable(storageRef, file).then(() => {
+      /* await uploadBytesResumable(storageRef, file).then(() => {
         getDownloadURL(storageRef).then(async (downloadURL) => {
           try {
             //Update profile of user for only authentication
@@ -85,7 +88,7 @@ const SignUp = () => {
             setLoading(false);
           }
         });
-      });
+      }); */
     } catch (err) {
       setError(true);
       setLoading(false);
@@ -226,13 +229,13 @@ const SignUp = () => {
                  
               </span>
             </div>
-            <input type="file" id="file" style={{ display: "none" }} />
+            {/* <input type="file" id="file" style={{ display: "none" }} />
             <label
               htmlFor="file"
               className=" cursor-pointer flex items-center gap-2 dark:text-white mt-2"
             >
               <MdImage className="text-2xl" /> <span>Add an avatar</span>
-            </label>
+            </label> */}
             {loading && (
               <div className="dark:text-white">
                 Uploading and compressing the image please wait...{" "}

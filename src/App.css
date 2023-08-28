@@ -340,7 +340,7 @@
 }
 
 
-  #style-14::-webkit-scrollbar-track
+ /*  #style-14::-webkit-scrollbar-track
 {
 	-webkit-box-shadow: inset 0 0 -10px rgba(0,0,0,0.6);
 	background-color: #CCCCCC;
@@ -361,44 +361,52 @@
   border-radius: 10px;
 	background-color: #FFF;
   
+} */
+.nav-item,
+.navbar {
+z-index: 10000;
+}
+@media screen and (max-width:800px) {
+.sidebar{
+z-index: 10000000;
+}
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
-  }
-  ::-webkit-scrollbar-thumb {
-  background-color: rgb(216, 216, 216);
-  border-radius: 40px;
-  }
-  ::-webkit-scrollbar-track {
-  background-color: transparent;
-  }
-
+width: 6px;
+}
+::-webkit-scrollbar-thumb {
+background-color: rgb(216, 216, 216);
+border-radius: 40px;
+}
+::-webkit-scrollbar-track {
+background-color: transparent;
+}
   .sidebar {
     z-index: 1000;
     box-shadow: rgb(113 122 131 / 11%) 0px 7px 30px 0px;
     }
 
- .analyticsTable{
+ table{
   border-collapse:separate;
   border-spacing: 0 10px;
   margin-top:-10px
  }
 
- .analyticsTd{
+ td{
   border:1px solid black #000;
   border-style:solid none;
   padding:10px;
  }
 
 
- .analyticsTd td:first-child{
+ td td:first-child{
   border-left-style:solid;
   border-top-left-radius:10px;
   border-bottom-left-radius:10px
  }
  
- .analyticsTd td:last-child{
+ td td:last-child{
   border-right-style:solid;
   border-top-right-radius:10px;
   border-bottom-right-radius:10px
@@ -634,15 +642,39 @@ opacity: 1;
 
 
 
-  .navbar-fixed {
-    position: fixed;
-    top: 0;
-    left: 20rem;
-    right: 0;
-    z-index: 1000;
+/* @keyframes scaleAndSpin {
+  0% {
+    transform: scale(1);
   }
-
-
-  .zIndex{
-    z-index: 1500;
+  50% {
+    transform: scale(1.5) rotate(180deg);
   }
+  100% {
+    transform: scale(1) rotate(360deg);
+  }
+}
+.scaled-and-spun {
+  animation: scaleAndSpin 2s linear;
+} */
+
+/* .sharp-light-effect {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white; Bright light color
+  opacity: 0; Start with no opacity
+  pointer-events: none; Don't capture mouse events
+  z-index: 9999; Place above other elements
+  animation: sharpLightFade 0.5s ease-out forwards; Animation to control opacity
+} */
+
+/* @keyframes sharpLightFade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+} */

@@ -63,6 +63,8 @@ export const ContextProvider = ({ children }) => {
   const [showEventModal, setShowEventModal] = useState(false);
   const [selectedEvents, setSelectedEvents] = useState(null);
   const [labels, setLabels] = useState([]);
+  const [displayName, setDisplayName] = useState("");
+  const [storageRef , setStorageRef ] = useState("")
   const [savedEvents, dispatchCalEvent] = useReducer(
     savedEventsReducer,
     [],
@@ -140,6 +142,12 @@ export const ContextProvider = ({ children }) => {
   }, [savedEvents]);
 
   useEffect(() => {
+    if (!showEventModal) {
+      setSelectedEvents(null)
+    }
+  }, [showEventModal])
+
+  useEffect(() => {
     if (smallCalendarMonth !== null) {
       setMonthIndex(smallCalendarMonth);
     }
@@ -196,7 +204,7 @@ export const ContextProvider = ({ children }) => {
         labels,
         setLabels,
         updateLabels,
-        filteredEvents,
+        filteredEvents,displayName, setDisplayName,storageRef , setStorageRef 
       }}
     >
       {children}

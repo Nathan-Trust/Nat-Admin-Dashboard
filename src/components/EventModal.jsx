@@ -35,7 +35,7 @@ setShowEventModal(false)
       <form className="bg-white rounded-lg shadow-2xl w-1/4">
         <header className="bg-gray-100 px-4 py-2 flex justify-between items-center">
           <span className="text-gray-400"></span>
-          <div>
+          <div className="flex items-center justify-end">
             {selectedEvents && (
               
               <span onClick={() => {
