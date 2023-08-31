@@ -14,6 +14,16 @@
     Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji,
     Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
   letter-spacing: 0.5px;
+  ::-webkit-scrollbar {
+    width: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+    background-color: rgb(216, 216, 216);
+    border-radius: 40px;
+    }
+    ::-webkit-scrollbar-track {
+    background-color: transparent;
+    }
 }
 
 .ce-chat-list {
@@ -372,16 +382,7 @@ z-index: 10000000;
 }
 }
 
-::-webkit-scrollbar {
-width: 6px;
-}
-::-webkit-scrollbar-thumb {
-background-color: rgb(216, 216, 216);
-border-radius: 40px;
-}
-::-webkit-scrollbar-track {
-background-color: transparent;
-}
+
   .sidebar {
     z-index: 1000;
     box-shadow: rgb(113 122 131 / 11%) 0px 7px 30px 0px;
@@ -640,6 +641,56 @@ opacity: 1;
   box-sizing: border-box;
 }
 
+.bouncing-loader {
+  display: flex;
+  justify-content: center;
+}
+
+.bouncing-loader > div {
+  width: 16px;
+  height: 16px;
+  margin: 3px 6px;
+  border-radius: 50%;
+  background-color: #a3a1a1;
+  opacity: 1;
+  animation: bouncing-loader 0.6s infinite alternate;
+}
+
+
+@keyframes bouncing-loader {
+  to {
+    opacity: 0.1;
+    transform: translateY(-16px);
+  }
+}
+
+.bouncing-loader > div:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.bouncing-loader > div:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* Regular styles for the HTML content */
+.pdf-print-layout {
+  /* Set the page size and margins for A4 paper */
+  width: 210mm;
+  height: 297mm;
+  margin: 0; /* Adjust margin values as needed */
+
+  /* Center the content horizontally */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Styles for individual elements within the PDF */
+.pdf-print-layout h1 {
+  font-size: 16px;
+}
+
+/* Add more styles as needed for different elements */
 
 
 /* @keyframes scaleAndSpin {

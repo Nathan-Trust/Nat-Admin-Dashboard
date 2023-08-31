@@ -11,6 +11,8 @@ import { doc, setDoc } from "firebase/firestore";
 import { AuthContext } from "../contexts/AuthContext";
 import { MdImage } from "react-icons/md";
 import { GoogleAuthProvider, updateProfile } from "firebase/auth";
+import BouncingLoader from "../components/BouncingLoader";
+import {AiOutlineUser} from "react-icons/ai"
 // import ThemeSettings from "../components/ThemeSettings";
 // import { useStateContext } from "../contexts/ContextProvider";
 // import React, { useState } from "react";
@@ -114,7 +116,7 @@ export default function ProfilePicAdd() {
   const handleSubmit = async (e) => {
     setLoading(true);
     // setShowLightEffect(true); // Trigger the light effect
-    // setAnimateImage(true); // Trigger the image animation
+    setAnimateImage(true); // Trigger the image animation
     setContentVisible(false); // Hide the content
     e.preventDefault();
     // const file = e.target[0].files[0];
@@ -236,22 +238,25 @@ export default function ProfilePicAdd() {
               {showAddImage && <button type="submit">Add Image </button>}
             </div>
           </form>
-          {loading && (
-            <div className="dark:text-white">
-              Uploading and compressing the image please wait...{" "}
-            </div>
-          )}
         </div>
       )}
 
       {animateImage && (
-        <div className={`flex justify-center scaled-and-spun`}>
-          {console.log(file)} {/* Add this line */}
-          <img
+        <div className="flex items-center justify-center flex-col gap-10">
+          <div>
+         <img
             src={imageDataUrl}
             alt="avatar"
-            className="rounded-full w-[100px] h-[100px]"
-          />
+            className="rounded-full w-[200px] h-[200px]"
+            />
+         </div>
+           <div>
+             {loading && (
+              <div className="dark:text-white">
+               <BouncingLoader/>
+              </div>
+            )}
+           </div>
         </div>
       )}
 
