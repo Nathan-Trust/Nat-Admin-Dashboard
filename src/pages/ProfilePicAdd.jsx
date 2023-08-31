@@ -1,4 +1,4 @@
-import React, { useState, useContext  , useEffect} from "react";
+import React, { useState, useContext, useEffect } from "react";
 import ThemeSettings from "../components/ThemeSettings";
 import { Link, useNavigate } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
@@ -47,7 +47,7 @@ export default function ProfilePicAdd() {
   // const [showLightEffect, setShowLightEffect] = useState(false); // State to control light effect
   const [animateImage, setAnimateImage] = useState(false);
   const [contentVisible, setContentVisible] = useState(true);
-const [imageDataUrl ,setImageDataUrl] = useState(null)
+  const [imageDataUrl, setImageDataUrl] = useState(null);
   const { currentUser } = useContext(AuthContext);
 
   console.log(currentUser);
@@ -147,7 +147,7 @@ const [imageDataUrl ,setImageDataUrl] = useState(null)
             //create empty user chats on firestore
             await setDoc(doc(db, "userChats", currentUser.uid), {});
             // setTimeout(() => {
-              navigate("/dashboard");
+            navigate("/dashboard");
             // }, 1000);
           } catch (err) {
             console.log(err);
@@ -212,7 +212,7 @@ const [imageDataUrl ,setImageDataUrl] = useState(null)
             {`Welcome ${displayName}`}{" "}
           </h3>
           <div className="w-[350px]">
-            <p>Were happy to have you join the cravens</p>
+            <p>We're happy to have you join the cravens</p>
             <p>
               But for we all to know your identity we'll love you to add an
               avatar to proceed{" "}
@@ -254,7 +254,7 @@ const [imageDataUrl ,setImageDataUrl] = useState(null)
           />
         </div>
       )}
-      
+
       {/* {showLightEffect && <div className="sharp-light-effect" />} */}
       <div className="fixed right-4 bottom-4">
         <button

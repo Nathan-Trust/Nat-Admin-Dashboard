@@ -15,7 +15,7 @@ import { MdSettings } from "react-icons/md";
 import BarChart from "../components/BarChart";
 import PieChart from "../components/PieChart";
 import { UserData } from "../data/UserTableData";
-import { GoPrimitiveDot } from "react-icons/go";
+// import { GoPrimitiveDot } from "react-icons/go";
 import { IoIosMore } from "react-icons/io";
 import img from "./28850184_office_05n.jpg";
 import product9 from "../data/product9.jpg";
