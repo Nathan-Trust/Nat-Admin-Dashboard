@@ -34,7 +34,7 @@ const Table = ({ data }) => {
       columns,
       data: rowData,
       defaultColumn,
-      initialState:{pageSize : 5}
+      initialState:{pageSize : 8}
     },
     useFilters,
     useGlobalFilter,
@@ -154,7 +154,7 @@ console.log(tableInstance)
                       return (
                         <td
                           {...cell.getCellProps()}
-                          className="whitespace-nowrap px-4 py-2 font-medium dark:text-white analyticsTd"
+                          className="whitespace-nowrap px-4 py-2 font-medium dark:text-white "
                         >
                           {cell.render("Cell")}
                         </td>

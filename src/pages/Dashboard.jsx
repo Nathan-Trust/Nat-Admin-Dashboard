@@ -20,18 +20,24 @@ import { IoIosMore } from "react-icons/io";
 import img from "./28850184_office_05n.jpg";
 import product9 from "../data/product9.jpg";
 // import { animateScroll as scroll } from "react-scroll";
-// import Aos from "aos";
-// import "aos/dist/aos.css";
 import { useInView } from "react-intersection-observer";
 
 // import { ScrollContainer, ScrollPage, Animator, ZoomIn , batch , FadeIn , Fade ,Zoom, MoveOut} from "react-scroll-motion";
 // import Dropdown from "../components/Dropdown";
 import { BsCurrencyDollar } from "react-icons/bs";
-// import Tooltip from "@mui/material/core/too"
+import LineChart from "../components/Charts/LIneChart";
+import AOS from "aos";
+import "aos/dist/aos.css"; // Import the CSS for AOS
+
+
+
+
+
 
 const Dashboard = () => {
   const { activeMenu, themeSettings, setThemeSettings, currentColor } =
     useStateContext();
+
   const [userData, setUserData] = useState({
     labels: UserData.map((data) => data.year),
     datasets: [
@@ -47,16 +53,20 @@ const Dashboard = () => {
     ],
   });
 
+  useEffect(() => {
+    // Initialize AOS
+    AOS.init();
+// {
+//       duration: 800, // Duration of the animation in milliseconds
+//     }
+  // console.log(AOS.init());
+  }, []);
+
+
   const { ref, inView } = useInView({
     triggerOnce: true, // Only trigger animation once
     threshold: 0.2, // The percentage of the element that needs to be in view to trigger the animation
   });
-
-  /* useEffect(() => {
-    Aos.init();
-  }, []);
-
- */
 
   return (
     <>
@@ -90,7 +100,7 @@ const Dashboard = () => {
               ? " min-h-screen md:ml-72 w-full dark:bg-nat bg-slate-gray "
               : " w-full min-h-screen flex-2 dark:bg-nat bg-slate-gray "
           }
-          // style={{ height: "100vh", overflowY: "auto" }}
+          style={{ height: "100vh", overflowY: "auto" }}
         >
           <div>
             {themeSettings && <ThemeSettings />}
@@ -99,7 +109,7 @@ const Dashboard = () => {
                 <Navbar />
                 <Header title="Dashboard" />
               </div>
-              <div className="flex flex-wrap lg:flex-nowrap justify-center ">
+              <div className="flex flex-wrap lg:flex-nowrap justify-center">
                 <div className=" dark:bg-secondary-dark-bg dark:text-gray-200 h-44 rounded-xl w-full lg:w-80 p-8 pt-9 m-3 bg-no-repeat bg-cover bg-center dashBoard">
                   <div className="flex justify-between items-center">
                     <div>
@@ -128,6 +138,7 @@ const Dashboard = () => {
                     <div
                       key={card.title}
                       className="bg-white h-44 dark:text-gray-200 dark:bg-secondary-dark-bg md:w-56  p-4 pt-9 rounded-2xl "
+                      data-aos="zoom-in"
                     >
                       <button
                         type="button"
@@ -159,20 +170,19 @@ const Dashboard = () => {
               </div>
 
               <div className="flex gap-10 flex-wrap justify-center">
-                <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg m-3 p-4 rounded-2xl md:w-780  ">
+                <div
+                  className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg m-3 p-4 rounded-2xl md:w-780  "
+                  data-aos="zoom-in"
+                >
                   <div className="flex justify-between">
                     <p className="font-semibold text-xl">Revenue Updates</p>
                     <div className="flex items-center gap-4">
                       <p className="flex items-center gap-2 text-gray-600 hover:drop-shadow-xl">
-                        <span>
-                          {/* <GoPrimitiveDot /> */}
-                        </span>
+                        <span>{/* <GoPrimitiveDot /> */}</span>
                         <span>Expense</span>
                       </p>
                       <p className="flex items-center gap-2 text-green-400 hover:drop-shadow-xl">
-                        <span>
-                          {/* <GoPrimitiveDot /> */}
-                        </span>
+                        <span>{/* <GoPrimitiveDot /> */}</span>
                         <span>Budget</span>
                       </p>
                     </div>
@@ -226,12 +236,10 @@ const Dashboard = () => {
                     </div>
                   </div>
                 </div>
-                <div
-                  className="  flex flex-col justify-center items-center"
-                >
+                <div className="  flex flex-col justify-center items-center">
                   <div
                     style={{
-                      backgroundColor: currentColor
+                      backgroundColor: currentColor,
                     }}
                     ref={ref}
                     className={`${
@@ -239,6 +247,7 @@ const Dashboard = () => {
                         ? "animate-fade-in  rounded-2xl flex justify-center items-center  md:w-400 p-4 m-3 "
                         : "opacity-0  rounded-2xl   flex justify-center items-center  md:w-400 p-4 m-3 " // Apply the animation class when inView is true
                     }`}
+                    // data-aos ="fade-left"
                   >
                     <div className="flex justify-between items-center gap-6 ">
                       <p className="font-semibold text-white text-2xl">
@@ -272,6 +281,7 @@ const Dashboard = () => {
                         ? "animate-fade-in  bg-white dark:text-gray-200 dark:bg-secondary-dark-bg rounded-2xl md:w-400 p-6 m-3  flex justify-center items-center  "
                         : "opacity-0   bg-white dark:text-gray-200 dark:bg-secondary-dark-bg rounded-2xl md:w-400 p-6 m-3  flex justify-center items-center  " // Apply the animation class when inView is true
                     }`}
+                    // data-aos="fade-up-left"
                   >
                     <div>
                       <p className="text-2xl font-semibold ">$43,246</p>
@@ -292,7 +302,10 @@ const Dashboard = () => {
               </div>
 
               <div className="flex gap-10 m-4 flex-wrap justify-center">
-                <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg  px-2 py-4  md:p-6 rounded-2xl w-[300px] md:w-[450px] ">
+                <div
+                  className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg  px-2 py-4  md:p-6 rounded-2xl w-[300px] md:w-[450px] "
+                  // data-aos="zoom-in-right"
+                >
                   <div className="flex justify-between items-center gap-2">
                     <p className="text-xl font-semibold">Recent Transactions</p>
                     {/* <DropDown currentMode={currentMode} /> */}
@@ -346,13 +359,15 @@ const Dashboard = () => {
                     {/* <DropDown currentMode={currentMode} /> */}
                   </div>
                   <div className="md:w-full overflow-auto">
-                    {/* <LineChart /> */}
+                    <LineChart />
                   </div>
                 </div>
               </div>
 
-              <div className="flex flex-wrap justify-center">
-                <div className="md:w-400 bg-white dark:text-gray-200 dark:bg-secondary-dark-bg rounded-2xl p-6 m-3">
+              <div className="flex flex-wrap justify-center" >
+                <div
+                  className="md:w-400 bg-white dark:text-gray-200 dark:bg-secondary-dark-bg rounded-2xl p-6 m-3"
+                >
                   <div className="flex justify-between">
                     <p className="text-xl font-semibold">Weekly Stats</p>
                     <button
@@ -393,7 +408,9 @@ const Dashboard = () => {
                     </div>
                   </div>
                 </div>
-                <div className="w-400 bg-white dark:text-gray-200 dark:bg-secondary-dark-bg rounded-2xl p-6 m-3">
+                <div
+                  className="w-400 bg-white dark:text-gray-200 dark:bg-secondary-dark-bg rounded-2xl p-6 m-3"
+                >
                   <div className="flex justify-between">
                     <p className="text-xl font-semibold">MedicalPro Branding</p>
                     <button
@@ -461,7 +478,10 @@ const Dashboard = () => {
                     </p>
                   </div>
                 </div>
-                <div className="w-400 bg-white dark:text-gray-200 dark:bg-secondary-dark-bg rounded-2xl p-6 m-3">
+                <div
+                  className="w-400 bg-white dark:text-gray-200 dark:bg-secondary-dark-bg rounded-2xl p-6 m-3"
+                  // data-aos="flip-left"
+                >
                   <div className="flex justify-between">
                     <p className="text-xl font-semibold">Daily Activities</p>
                     <button

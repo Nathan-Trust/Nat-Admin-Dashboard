@@ -14,7 +14,7 @@
     Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji,
     Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
   letter-spacing: 0.5px;
-  ::-webkit-scrollbar {
+  /* ::-webkit-scrollbar {
     width: 6px;
     }
     ::-webkit-scrollbar-thumb {
@@ -23,8 +23,18 @@
     }
     ::-webkit-scrollbar-track {
     background-color: transparent;
-    }
+    }  */
 }
+::-webkit-scrollbar {
+    width: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+    background-color: rgb(216, 216, 216);
+    border-radius: 40px;
+    }
+    ::-webkit-scrollbar-track {
+    background-color: transparent;
+    } 
 
 .ce-chat-list {
   background-color: rgb(240, 240, 240) !important;
@@ -284,7 +294,7 @@
 
 .button {
   border-radius: 4px;
-  border: none;
+  border: 1px solid ;
   text-transform: uppercase;
   font-size: 15px;
   padding: 5px;
@@ -401,13 +411,13 @@ z-index: 10000000;
  }
 
 
- td td:first-child{
+ td:first-child{
   border-left-style:solid;
   border-top-left-radius:10px;
   border-bottom-left-radius:10px
  }
  
- td td:last-child{
+  td:last-child{
   border-right-style:solid;
   border-top-right-radius:10px;
   border-bottom-right-radius:10px
@@ -496,14 +506,15 @@ z-index: 10000000;
 }
 
 .dashBoard{
-  background: url(./pages/_12f466c5-becc-4298-98ef-9fba57745a04.jpg);
+  /* background: url(./pages/_12f466c5-becc-4298-98ef-9fba57745a04.jpg); */
+  background: url(./data/welcome-bg.svg);
   background-size: cover;
   background-position: top;
   /* background-repeat: no-repeat; */
   /* background-position: calc(50% - 250px); */
   /* background-position: center; */
   /* background-color:#00000000 ; */
-  background-blend-mode: overlay;
+  /* background-blend-mode: overlay; */
   }
 
   .animate {
@@ -520,12 +531,12 @@ z-index: 10000000;
 /* styles.css or MyComponent.css */
 
 /* Example of AOS animation classes */
-[data-aos] {
-  transition-duration: 1s; /* Animation duration */
+/* [data-aos] {
+  transition-duration: 1s; /* Animation duration 
 }
-
+ */
 /* Additional AOS animation classes (optional) */
-[data-aos='fade-up'] {
+/* [data-aos='fade-up'] {
   opacity: 0;
   transform: translateY(50px);
 }
@@ -543,7 +554,7 @@ z-index: 10000000;
 [data-aos='zoom-in'].aos-animate {
   opacity: 1;
   transform: scale(1);
-}
+} */
 
 
 .invoiceBoard{

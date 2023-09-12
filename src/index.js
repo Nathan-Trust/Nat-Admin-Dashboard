@@ -8,8 +8,6 @@ import {  AuthContextProvider } from "./contexts/AuthContext";
 import { ChatContextProvider } from "./contexts/ChatContext";
 import { Element } from "react-scroll";
 
-// AOS.init();
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <AuthContextProvider>

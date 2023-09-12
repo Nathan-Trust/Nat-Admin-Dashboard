@@ -98,6 +98,7 @@ const Login = () => {
                 type="email"
                 className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm bg-gray-200 dark:bg-test placeholder:dark:text-gray-100 dark:text-gray-200"
                 placeholder="Enter email"
+                style={{ border: "none" }}
               />
             </div>
           </div>
@@ -115,6 +116,7 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 className=" rounded-lg border-gray-200 p-4 w-full text-sm shadow-sm bg-transparent  placeholder:dark:text-gray-100 dark:text-gray-200"
                 placeholder="Enter password"
+                style={{ border: "none" }}
               />
 
               <span className="ml-2 text-xl flex items-center">
@@ -123,7 +125,7 @@ const Login = () => {
                   onClick={handleTogglePassword}
                   className="flex items-center mr-2"
                 >
-                  {passwordVisible ? <EyeInvisibleFilled /> :  <EyeFilled />}
+                  {passwordVisible ? <EyeInvisibleFilled /> : <EyeFilled />}
                 </button>
               </span>
             </div>
@@ -132,11 +134,16 @@ const Login = () => {
           <div className="flex justify-between items-center ">
             <div className="flex gap-1">
               <input type="checkbox" id="remembrance" />
-              <label htmlFor="remembrance" className="dark:text-white md:text-md text-[15px]">
+              <label
+                htmlFor="remembrance"
+                className="dark:text-white md:text-md text-[15px]"
+              >
                 Remember Me
               </label>
             </div>
-            <Link className="text-blue-500 md:text-md text-[15px]">Reset Password</Link>
+            <Link className="text-blue-500 md:text-md text-[15px]">
+              Reset Password
+            </Link>
           </div>
 
           <div className=" flex flex-col items-center justify-between gap-5">

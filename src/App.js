@@ -21,6 +21,8 @@ import { auth } from "./utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import HomeChat from "./components/HomeChat";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 function App() {
   const [user, loading] = useAuthState(auth);
@@ -47,6 +49,11 @@ function App() {
   setTasks(JSON.parse(localStorage.getItem("tasks")))
 
   },[]) */
+
+  useEffect(() => {
+    Aos.init();
+  }, []);
+
 
   useEffect(() => {
     try {

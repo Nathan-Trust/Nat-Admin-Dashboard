@@ -32,11 +32,6 @@ const Message = () => {
     threshold: 0.2, // The percentage of the element that needs to be in view to trigger the animation
   });
 
-  /* useEffect(() => {
-    Aos.init();
-  }, []);
-
- */
 
   return (
     <>

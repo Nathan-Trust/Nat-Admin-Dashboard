@@ -13,6 +13,7 @@ import { MdImage } from "react-icons/md";
 import { GoogleAuthProvider, updateProfile } from "firebase/auth";
 import BouncingLoader from "../components/BouncingLoader";
 import {AiOutlineUser} from "react-icons/ai"
+import user from "./user_1144760.png"
 // import ThemeSettings from "../components/ThemeSettings";
 // import { useStateContext } from "../contexts/ContextProvider";
 // import React, { useState } from "react";
@@ -20,14 +21,7 @@ import {AiOutlineUser} from "react-icons/ai"
 //import login from "../Login (2).png";
 // import { MdFacebook, MdSettings } from "react-icons/md";
 // import { FcGoogle } from "react-icons/fc";
-// import { auth } from "../utils/firebase";
-// import { GoogleAuthProvider, updateProfile } from "firebase/auth";/*
-// import { signInWithPopup } from "firebase/auth";
-// import { createUserWithEmailAndPassword } from "firebase/auth";
-// import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-// import { storage } from "../utils/firebase";
-// import { db } from "../utils/firebase";
-// import { doc, setDoc } from "firebase/firestore"; */
+// import { auth } from "../utils/firebase";/
 
 export default function ProfilePicAdd() {
   const {
@@ -49,7 +43,7 @@ export default function ProfilePicAdd() {
   // const [showLightEffect, setShowLightEffect] = useState(false); // State to control light effect
   const [animateImage, setAnimateImage] = useState(false);
   const [contentVisible, setContentVisible] = useState(true);
-  const [imageDataUrl, setImageDataUrl] = useState(null);
+const [imageDataUrl, setImageDataUrl] = useState(user);
   const { currentUser } = useContext(AuthContext);
 
   console.log(currentUser);
@@ -73,11 +67,15 @@ export default function ProfilePicAdd() {
   };
   const handleSkip = async (e) => {
     setLoading(true);
+    // setShowLightEffect(true); // Trigger the light effect
+    setAnimateImage(true); // Trigger the image animation
+    setContentVisible(false); // Hide the content
     e.preventDefault();
+    // const file = e.target[0].files[0];
     // const file = e.target[0].files[0];
     // file = "";
     try {
-      await uploadBytesResumable(storageRef, file).then(() => {
+      await uploadBytesResumable(storageRef, imageDataUrl).then(() => {
         getDownloadURL(storageRef).then(async (downloadURL) => {
           try {
             //Update profile of user for only authentication
@@ -211,7 +209,7 @@ export default function ProfilePicAdd() {
             />
           </div>
           <h3 className="text-center mt-4 text-xl">
-            {`Welcome ${displayName}`}{" "}
+            {`Welcome ${displayName}`}
           </h3>
           <div className="w-[350px]">
             <p>We're happy to have you join the cravens</p>
