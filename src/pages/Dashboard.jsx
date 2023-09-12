@@ -138,7 +138,7 @@ const Dashboard = () => {
                     <div
                       key={card.title}
                       className="bg-white h-44 dark:text-gray-200 dark:bg-secondary-dark-bg md:w-56  p-4 pt-9 rounded-2xl "
-                      data-aos="zoom-in"
+                      // data-aos="zoom-in"
                     >
                       <button
                         type="button"
@@ -172,7 +172,7 @@ const Dashboard = () => {
               <div className="flex gap-10 flex-wrap justify-center">
                 <div
                   className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg m-3 p-4 rounded-2xl md:w-780  "
-                  data-aos="zoom-in"
+                  // data-aos="zoom-in"
                 >
                   <div className="flex justify-between">
                     <p className="font-semibold text-xl">Revenue Updates</p>
